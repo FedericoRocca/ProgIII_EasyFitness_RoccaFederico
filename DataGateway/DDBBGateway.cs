@@ -24,7 +24,7 @@ namespace DataGateway
             // ---------------------------- Desktop-PC ----------------------------
             connectionString = "data source=DESKTOP-BA6HNP1\\SQLEXPRESS01; integrated security=sspi; initial catalog=EasyFitness;";
             // ---------------------------- Notebook-PC ----------------------------
-            // connectionString = "data source=DESKTOP-SI2UFE1\\SQLEXPRESS; integrated security=sspi; initial catalog=TP_WEB;";
+            // connectionString = "data source=DESKTOP-SI2UFE1\\SQLEXPRESS; integrated security=sspi; initial catalog=EasyFitness;";
 
             connection.ConnectionString = connectionString;
             command.Connection = connection;
