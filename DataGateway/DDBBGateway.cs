@@ -100,6 +100,23 @@ namespace DataGateway
         }
 
         /// <summary>
+        /// Envía la query a la DDBB de modo scalar. Posterior a prepareQuery().
+        /// </summary>
+        public int sendScalarQuery()
+        {
+            try
+            {
+                connection.Open();
+                return (int)command.ExecuteScalar();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+        /// <summary>
         /// Envía la sentencia a la DDBB. Posterior a prepareStatement().
         /// </summary>
         public void sendStatement()
