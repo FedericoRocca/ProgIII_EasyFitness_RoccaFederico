@@ -48,6 +48,7 @@ C:\Users\frocc\Desktop\Repos\ProgIII_EasyFitness_RoccaFederico\ProgIII_EasyFitne
 C:\Users\frocc\Desktop\Repos\ProgIII_EasyFitness_RoccaFederico\ProgIII_EasyFitness_RoccaFederico\bin\roslyn\VBCSCompiler.exe
 C:\Users\frocc\Desktop\Repos\ProgIII_EasyFitness_RoccaFederico\ProgIII_EasyFitness_RoccaFederico\bin\roslyn\VBCSCompiler.exe.config
 C:\Users\frocc\Desktop\Repos\ProgIII_EasyFitness_RoccaFederico\ProgIII_EasyFitness_RoccaFederico\bin\Antlr3.Runtime.dll
+C:\Users\frocc\Desktop\Repos\ProgIII_EasyFitness_RoccaFederico\ProgIII_EasyFitness_RoccaFederico\bin\DataGateway.dll
 C:\Users\frocc\Desktop\Repos\ProgIII_EasyFitness_RoccaFederico\ProgIII_EasyFitness_RoccaFederico\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 C:\Users\frocc\Desktop\Repos\ProgIII_EasyFitness_RoccaFederico\ProgIII_EasyFitness_RoccaFederico\bin\Microsoft.Web.Infrastructure.dll
 C:\Users\frocc\Desktop\Repos\ProgIII_EasyFitness_RoccaFederico\ProgIII_EasyFitness_RoccaFederico\bin\Newtonsoft.Json.dll
@@ -59,6 +60,7 @@ C:\Users\frocc\Desktop\Repos\ProgIII_EasyFitness_RoccaFederico\ProgIII_EasyFitne
 C:\Users\frocc\Desktop\Repos\ProgIII_EasyFitness_RoccaFederico\ProgIII_EasyFitness_RoccaFederico\bin\System.Web.WebPages.dll
 C:\Users\frocc\Desktop\Repos\ProgIII_EasyFitness_RoccaFederico\ProgIII_EasyFitness_RoccaFederico\bin\System.Web.WebPages.Razor.dll
 C:\Users\frocc\Desktop\Repos\ProgIII_EasyFitness_RoccaFederico\ProgIII_EasyFitness_RoccaFederico\bin\WebGrease.dll
+C:\Users\frocc\Desktop\Repos\ProgIII_EasyFitness_RoccaFederico\ProgIII_EasyFitness_RoccaFederico\bin\DataGateway.pdb
 C:\Users\frocc\Desktop\Repos\ProgIII_EasyFitness_RoccaFederico\ProgIII_EasyFitness_RoccaFederico\bin\System.Web.Helpers.xml
 C:\Users\frocc\Desktop\Repos\ProgIII_EasyFitness_RoccaFederico\ProgIII_EasyFitness_RoccaFederico\bin\System.Web.Mvc.xml
 C:\Users\frocc\Desktop\Repos\ProgIII_EasyFitness_RoccaFederico\ProgIII_EasyFitness_RoccaFederico\bin\System.Web.Optimization.xml
@@ -80,5 +82,3 @@ C:\Users\frocc\Desktop\Repos\ProgIII_EasyFitness_RoccaFederico\ProgIII_EasyFitne
 C:\Users\frocc\Desktop\Repos\ProgIII_EasyFitness_RoccaFederico\ProgIII_EasyFitness_RoccaFederico\obj\Debug\ProgIII_EasyFitness_RoccaFederico.csproj.CopyComplete
 C:\Users\frocc\Desktop\Repos\ProgIII_EasyFitness_RoccaFederico\ProgIII_EasyFitness_RoccaFederico\obj\Debug\ProgIII_EasyFitness_RoccaFederico.dll
 C:\Users\frocc\Desktop\Repos\ProgIII_EasyFitness_RoccaFederico\ProgIII_EasyFitness_RoccaFederico\obj\Debug\ProgIII_EasyFitness_RoccaFederico.pdb
-C:\Users\frocc\Desktop\Repos\ProgIII_EasyFitness_RoccaFederico\ProgIII_EasyFitness_RoccaFederico\bin\DataGateway.dll
-C:\Users\frocc\Desktop\Repos\ProgIII_EasyFitness_RoccaFederico\ProgIII_EasyFitness_RoccaFederico\bin\DataGateway.pdb
