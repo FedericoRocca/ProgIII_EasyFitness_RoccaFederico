@@ -3,7 +3,13 @@ USE [EasyFitness]
 GO
 
 -- Vacio la tabla de ejercicios
-TRUNCATE TABLE [dbo].[Ejercicios]
+delete from [dbo].[Ejercicios]
+
+-- Vacio la tabla de alumnos
+delete from [dbo].[Alumnos]
+
+-- Vacio la tabla de usuarios
+delete from [dbo].[Users]
 
 -- Insert de datos en tabla de Ejercicios
 SET IDENTITY_INSERT [dbo].[Ejercicios] ON 
@@ -17,9 +23,18 @@ GO
 SET IDENTITY_INSERT [dbo].[Ejercicios] OFF
 GO
 
--- Vacio la tabla de usuarios
-TRUNCATE TABLE [dbo].[Users]
-
 -- Insert de datos en tabla de Usuarios
-INSERT [dbo].[Users] ([Mail], [Password]) VALUES (N'prueba@gmail.com', N'Prueba')
+INSERT [dbo].[Users] ([Mail], [Password]) VALUES (N'user1@gmail.com', N'user1')
+GO
+INSERT [dbo].[Users] ([Mail], [Password]) VALUES (N'user2@gmail.com', N'user2')
+GO
+INSERT [dbo].[Users] ([Mail], [Password]) VALUES (N'user3@gmail.com', N'user3')
+GO
+INSERT [dbo].[Users] ([Mail], [Password]) VALUES (N'user4@gmail.com', N'user4')
+GO
+INSERT [dbo].[Users] ([Mail], [Password]) VALUES (N'user5@gmail.com', N'user5')
+GO
+INSERT [dbo].[Users] ([Mail], [Password]) VALUES (N'user6@gmail.com', N'user6')
+GO
+INSERT [dbo].[Users] ([Mail], [Password]) VALUES (N'user7@gmail.com', N'user7')
 GO

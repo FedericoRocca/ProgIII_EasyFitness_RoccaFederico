@@ -1,0 +1,40 @@
+﻿@using ProgIII_EasyFitness_RoccaFederico.Models;
+@using ProgIII_EasyFitness_RoccaFederico.Service;
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Mis datos</h2>
+
+@{
+    try
+    {
+        AlumnoModel alu = new AlumnoModel();
+        // Obtengo el ID del alumno cargado en la sessión, para traer los datos desde la DDBB
+        alu.id = Int64.Parse(Session["idAlumno" + Session.SessionID].ToString());
+
+        AlumnoService aluServ = new AlumnoService();
+        alu = aluServ.getAlumnoByID(alu.id);
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-5">Nombre</div>
+            <div class="col-md-5">@alu.nombre</div>
+            <div class="col-md-1"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-5">Apellido</div>
+            <div class="col-md-5">@alu.apellido</div>
+            <div class="col-md-1"></div>
+        </div>
+    </div>
+
+    }
+    catch (Exception ex)
+    {
+        throw ex;
+    }
+}

@@ -16,7 +16,7 @@
         </div>
 
         <div class="form-group">
-                @Html.EditorFor(model => model.password, new { htmlAttributes = new { @class = "form-control", @placeholder = "Password" } })
+                @Html.EditorFor(model => model.password, new { htmlAttributes = new { @class= "form-control", @placeholder= "Password", @type= "password" } })
         </div>
 
         @{
@@ -30,8 +30,8 @@
 
                 if (userLogin.validateUserLogin(usr) == false)
                 {
-                    <div class="alert alert-danger" role="alert">
-                        El mail o la contraseña introducida son incorrectos.
+                    <div class="form-group alert alert-danger" role="alert">
+                        El E-Mail o el Password son incorrectos.
                     </div>
                 }
                 else
@@ -42,7 +42,7 @@
             }
         }
         <div class="form-group">
-            <input type="submit" value="Ingresar" class="btn btn-success" />
+            <input type="submit" value="Ingresar" class="btn btn-success"/>
             <input type="submit" value="Recuperar cuenta" class="btn btn-dark" />
             <input type="submit" value="Registrar cuenta" class="btn btn-dark" />
         </div>
