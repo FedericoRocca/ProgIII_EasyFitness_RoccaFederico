@@ -13,85 +13,96 @@ GO
 USE EasyFitness
 GO
 
--- Creo la tabla de Ejercicios
-CREATE TABLE [dbo].[Ejercicios](
-	[ID] [bigint] IDENTITY(1,1) NOT NULL PRIMARY KEY,
-	[Nombre] [varchar](100) NOT NULL,
-	[Tipo] [int] NOT NULL,
-	[UrlEjemplo] [varchar](500) NULL,
-	[Tiempo] [int] NULL,
-	[Repeticiones] [int] NULL,
-	[Comentarios] [varchar](500) NOT NULL
-) ON [PRIMARY]
-GO
+DROP TABLE IF EXISTS Alumnos
+DROP TABLE IF EXISTS Entrenadores
+DROP TABLE IF EXISTS Personas
+DROP TABLE IF EXISTS Usuarios
+DROP TABLE IF EXISTS Entrenamientos
+DROP TABLE IF EXISTS Rutinas
+DROP TABLE IF EXISTS Ejercicios
+DROP TABLE IF EXISTS Teams
+
+
+-- Creo la tabla de ejercicios
+CREATE TABLE Ejercicios
+(
+	id BIGINT NOT NULL PRIMARY KEY IDENTITY (1,1),
+	nombre VARCHAR(100) NOT NULL,
+	tipo INT NOT NULL,
+	urlEjemplo VARCHAR(100) NOT NULL,
+	tiempo INT NULL,
+	repeticiones INT NULL,
+	comentarios VARCHAR(100) NOT NULL,
+	intensidad SMALLINT NOT NULL,
+)
 
 -- Creo la tabla de rutinas
-CREATE TABLE dbo.Rutinas
-	(
-	ID bigint NOT NULL PRIMARY KEY IDENTITY (1,1),
-	EjerciciosID bigint NOT NULL FOREIGN KEY references Ejercicios(ID),
-	Nombre varchar(100) NOT NULL,
-	Descripcion varbinary(200) NOT NULL,
-	Tipo varchar(50) NOT NULL
-	)  ON [PRIMARY]
-GO
+CREATE TABLE Rutinas
+(
+	id BIGINT NOT NULL IDENTITY (1,1) PRIMARY KEY,
+	ejercicioId BIGINT NOT NULL FOREIGN KEY (ejercicioId) REFERENCES Ejercicios(id),
+	descripcion VARCHAR(100) NOT NULL,
+	nombre VARCHAR(100) NOT NULL,
+	UNIQUE(ejercicioId, descripcion, nombre)
+)
 
 -- Creo la tabla de entrenamientos
-CREATE TABLE dbo.Entrenamientos
-	(
-	ID bigint NOT NULL PRIMARY KEY IDENTITY (1,1),
-	RutinasID bigint NOT NULL FOREIGN KEY references Rutinas(ID),
-	Nombre varchar(100) NOT NULL,
-	Descripcion varbinary(200) NOT NULL,
-	Tipo varchar(50) NOT NULL
-	)  ON [PRIMARY]
-GO
-
--- Creo la tabla de personas
-CREATE TABLE dbo.Personas
-	(
-	ID bigint NOT NULL IDENTITY (1,1) PRIMARY KEY,
-	Nombre varchar(100) NOT NULL,
-	Apellido varchar(100) NOT NULL,
-	DNI int NOT NULL
-	)  ON [PRIMARY]
-GO
+CREATE TABLE Entrenamientos
+(
+	id BIGINT NOT NULL PRIMARY KEY IDENTITY (1,1),
+	idRutina BIGINT NOT NULL FOREIGN KEY (idRutina) REFERENCES Rutinas(id),
+	descripcion VARCHAR(100) NOT NULL,
+	nombre VARCHAR(100) NOT NULL,
+	UNIQUE(idRutina, descripcion, nombre)
+)
 
 -- Creo la tabla de usuarios
-CREATE TABLE [dbo].[Users](
-	[ID] bigint NOT NULL IDENTITY (1, 1) PRIMARY KEY,
-	[PersonaID] bigint NOT NULL FOREIGN KEY references Personas (ID),
-	[Mail] [varchar](100) NOT NULL,
-	[Password] [varchar](50) NOT NULL
-) ON [PRIMARY]
-GO
+CREATE TABLE Usuarios
+(
+	id BIGINT NOT NULL IDENTITY (1,1) PRIMARY KEY,
+	mail VARCHAR(100) NOT NULL,
+	password VARCHAR(100) NOT NULL,
+	UNIQUE (id, mail)
+)
 
--- Creo la tabla de alumnos
-CREATE TABLE dbo.Alumnos
-	(
-	ID bigint NOT NULL IDENTITY (1,1) PRIMARY KEY,
-	EntrenamientoID bigint NULL,
-	UsuarioID bigint NOT NULL FOREIGN KEY references Users(ID)
-	)  ON [PRIMARY]
-GO
+-- Creo la tabla de personas
+CREATE TABLE Personas
+(
+	id BIGINT IDENTITY(1,1) PRIMARY KEY NOT NULL,
+	nombre VARCHAR(100) NOT NULL,
+	apellido VARCHAR(100) NOT NULL,
+	dni INT NOT NULL CHECK( DNI > 0 ),
+	fechaNacimiento DATETIME NOT NULL,
+	userID BIGINT NOT NULL FOREIGN KEY (userID) REFERENCES Usuarios(id),
+	UNIQUE(dni)
+)
 
--- Creo la tabla de entrenadores
-CREATE TABLE dbo.Entrenadores
-	(
-	ID bigint NOT NULL IDENTITY (1,1) PRIMARY KEY,
-	TeamAdminID bigint NULL,
-	EntrenamientoAdminID bigint NULL,
-	AlumnoID bigint NOT NULL FOREIGN KEY references Alumnos(ID)
-	)  ON [PRIMARY]
-GO
+-- Creo la tabla de Teams
+CREATE TABLE Teams
+(
+	id BIGINT NOT NULL PRIMARY KEY IDENTITY (1,1),
+	nombre VARCHAR(100) NOT NULL,
+	descripcion VARCHAR(100) NOT NULL,
+	UNIQUE(nombre, descripcion)
+)
 
--- Creo la tabla de teams
-CREATE TABLE dbo.Teams
-	(
-	ID bigint NOT NULL IDENTITY (1,1),
-	Nombre varchar(100) NOT NULL,
-	Descripcion varchar(200) NULL,
-	Alumno bigint NULL FOREIGN KEY references Alumnos (ID),
-	Entrenador bigint NULL FOREIGN KEY references Entrenadores (ID)
-	)  ON [PRIMARY]
+-- Creo la tabla Alumnos
+CREATE TABLE Alumnos
+(
+	id BIGINT NOT NULL IDENTITY(1,1) PRIMARY KEY,
+	personaId BIGINT NOT NULL FOREIGN KEY (personaId) REFERENCES Personas(id),
+	entrenamientoID BIGINT NULL FOREIGN KEY (entrenamientoID) REFERENCES Entrenamientos(ID),
+	teamID BIGINT NULL FOREIGN KEY (teamID) REFERENCES Teams(ID),
+	UNIQUE(entrenamientoID, teamID)
+)
 
+CREATE TABLE Entrenadores
+(
+	id BIGINT NOT NULL PRIMARY KEY IDENTITY (1,1),
+	personaId BIGINT NOT NULL FOREIGN KEY (personaId) REFERENCES Personas(id),
+	entrenamientoId BIGINT NULL FOREIGN KEY (entrenamientoId) REFERENCES Entrenamientos(id),
+	rutinaId BIGINT NULL FOREIGN KEY (rutinaId) REFERENCES Rutinas(id),
+	ejercicioId BIGINT NULL FOREIGN KEY (ejercicioId) REFERENCES Ejercicios(id),
+	teamId BIGINT NULL FOREIGN KEY (teamId) REFERENCES Teams(id),
+	UNIQUE(entrenamientoId, rutinaId, ejercicioId, teamId)
+)

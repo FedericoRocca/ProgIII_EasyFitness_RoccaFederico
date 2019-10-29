@@ -36,7 +36,8 @@
                 }
                 else
                 {
-                    Response.Redirect("~/Ejercicio/Lista");
+                    Session["usrMail" + Session.SessionID] = usr.mail;
+                    Response.Redirect("~/AlumnoMain");
                 }
 
             }

@@ -12,10 +12,13 @@
     {
         AlumnoModel alu = new AlumnoModel();
         // Obtengo el ID del alumno cargado en la sessión, para traer los datos desde la DDBB
-        alu.id = Int64.Parse(Session["idAlumno" + Session.SessionID].ToString());
+        alu.user.mail = Session["usrMail" + Session.SessionID].ToString();
 
-        AlumnoService aluServ = new AlumnoService();
-        alu = aluServ.getAlumnoByID(alu.id);
+        AlumnoService aluService = new AlumnoService();
+        alu = aluService.getAlumnoByUsrMail(alu.user.mail.ToString());
+
+
+        //"select * from Usuarios inner join Alumnos on Alumnos.id = Usuarios.id where Usuarios.mail = 2"
 
     <div class="container">
         <div class="row">

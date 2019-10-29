@@ -14,7 +14,7 @@ namespace ProgIII_EasyFitness_RoccaFederico.Service
             try
             {
                 DDBBGateway data = new DDBBGateway();
-                data.prepareQuery("select count(*) from Users where Mail = '" + user.mail + "' and Password = '" + user.password + "'");
+                data.prepareQuery("select count(*) from Usuarios where Mail = '" + user.mail + "' and Password = '" + user.password + "'");
                 if (data.sendScalarQuery() <= 0)
                 {
                     return false;

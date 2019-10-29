@@ -181,7 +181,6 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
-    <Content Include="Diagrama de clases.cd" />
     <None Include="packages.config" />
     <Content Include="Views\AlumnoMain\Index.cshtml" />
     <Content Include="Views\AlumnoEntrenamiento\Index.cshtml" />

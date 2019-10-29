@@ -14,8 +14,17 @@ namespace ProgIII_EasyFitness_RoccaFederico.Models
         public int? tiempo { get; set; }
         public int? repeticiones { get; set; }
         public string comentarios { get; set; }
+        public short intensidad { get; set; }
 
-        public EjercicioModel(Int64 _id, string _nombre, int _tipo, string _urlEjemplo, int? _tiempo, int? _repeticiones, string _comentarios)
+        public EjercicioModel(
+            Int64 _id, 
+            string _nombre,
+            int _tipo, 
+            string _urlEjemplo, 
+            int? _tiempo, 
+            int? _repeticiones,
+            string _comentarios,
+            short _intensidad)
         {
             id = _id;
             nombre = _nombre;
@@ -30,6 +39,7 @@ namespace ProgIII_EasyFitness_RoccaFederico.Models
                 repeticiones = _repeticiones;
             }
             comentarios = _comentarios;
+            intensidad = _intensidad;
         }
 
         public EjercicioModel(){}
