@@ -41,9 +41,12 @@ namespace ProgIII_EasyFitness_RoccaFederico.Service
             try
             {
                 DDBBGateway data = new DDBBGateway();
-                data.prepareQuery(  "select Usuarios.id, Usuarios.mail, Usuarios.password, Alumnos.id as 'alumnoId', " +
-                                    "Alumnos.entrenamientoID, Alumnos.personaId, Alumnos.teamID from Usuarios inner join Alumnos " +
-                                    "on Alumnos.id = Usuarios.id where Usuarios.mail = " + _Mail + "");
+                data.prepareQuery("" +
+                    "select Personas.apellido, Personas.nombre, Usuarios.id, Usuarios.mail, " +
+                    "Usuarios.password, Alumnos.id as 'alumnoId', Alumnos.entrenamientoID, " +
+                    "Alumnos.personaId, Alumnos.teamID from Usuarios inner join Alumnos on " +
+                    "Alumnos.id = Usuarios.id inner join Personas on Personas.id = Alumnos.id " +
+                    "where Usuarios.mail =  " + _Mail + "");
                 data.sendQuery();
                 data.getReader().Read();
                 AlumnoModel aux = new AlumnoModel();
@@ -52,14 +55,45 @@ namespace ProgIII_EasyFitness_RoccaFederico.Service
                 aux.user.mail = data.getReader()["mail"].ToString();
                 aux.user.password = data.getReader()["password"].ToString();
                 aux.id = (Int64)data.getReader()["alumnoId"];
-                aux.entrenamientos = new List<EntrenamientoModel>();
-                aux.entrenamientos.Add((EntrenamientoModel)data.getReader()["entrenamientoID"]);
                 aux.personaId = (Int64)data.getReader()["personaId"];
-                aux.teams = new List<TeamModel>();
-                aux.teams.Add((TeamModel)data.getReader()["teamID"]);
-                
+                aux.entrenamientos = new List<EntrenamientoModel>();
+                aux.entrenamientos = loadEntrenamientosByPersonId(aux.id);
+                aux.apellido = data.getReader()["apellido"].ToString();
+                aux.nombre = data.getReader()["nombre"].ToString();
+                //aux.teams = new List<TeamModel>();
+                //aux.teams.Add((TeamModel)data.getReader()["teamID"]);
+
                 return aux;
 
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+        public List<EntrenamientoModel> loadEntrenamientosByPersonId(Int64 _personID)
+        {
+            try
+            {
+                DDBBGateway data = new DDBBGateway();
+                data.prepareQuery("" +
+                    "select Entrenamientos.id, Entrenamientos.descripcion, Entrenamientos.idRutina, Entrenamientos.nombre " +
+                    "from Entrenamientos inner join Alumnos on Entrenamientos.id = Alumnos.entrenamientoID " +
+                    "where Alumnos.personaId = " + _personID + "");
+                data.sendQuery();
+                List<EntrenamientoModel> auxList = new List<EntrenamientoModel>();
+
+                while (data.getReader().Read())
+                {
+                    EntrenamientoModel auxReg = new EntrenamientoModel();
+                    auxReg.descripcion = data.getReader()["descripcion"].ToString();
+                    auxReg.id = (Int64)data.getReader()["id"];
+                    auxReg.nombre = data.getReader()["nombre"].ToString();
+                    auxList.Add(auxReg);
+                }
+                return auxList;
             }
             catch (Exception ex)
             {

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using ProgIII_EasyFitness_RoccaFederico.Models;
+using ProgIII_EasyFitness_RoccaFederico.Service;
+using DataGateway;
 
 namespace ProgIII_EasyFitness_RoccaFederico.Models
 {
@@ -15,7 +17,8 @@ namespace ProgIII_EasyFitness_RoccaFederico.Models
 
         public AlumnoModel()
         {
-            this.user = new UsuarioModel();
+            user = new UsuarioModel();
         }
+
     }
 }
