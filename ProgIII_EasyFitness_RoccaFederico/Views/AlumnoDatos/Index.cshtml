@@ -21,18 +21,115 @@
         //"select * from Usuarios inner join Alumnos on Alumnos.id = Usuarios.id where Usuarios.mail = 2"
 
     <div class="container">
-        <div class="row">
-            <div class="col-md-1"></div>
-            <div class="col-md-5">Nombre</div>
-            <div class="col-md-5">@alu.nombre</div>
-            <div class="col-md-1"></div>
-        </div>
-        <div class="row">
-            <div class="col-md-1"></div>
-            <div class="col-md-5">Apellido</div>
-            <div class="col-md-5">@alu.apellido</div>
-            <div class="col-md-1"></div>
-        </div>
+        @{
+            <hr />
+            if (alu.nombre != null)
+            {
+                <div class="row">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-3">Nombre</div>
+                    <div class="col-md-5">@alu.nombre</div>
+                </div>
+            }
+
+            if (alu.apellido != null)
+            {
+                <div class="row">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-3">Apellido</div>
+                    <div class="col-md-5">@alu.apellido</div>
+                </div>
+            }
+
+            if (alu.dni != null)
+            {
+                <div class="row">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-3">DNI</div>
+                    <div class="col-md-5">@alu.dni</div>
+                </div>
+            }
+
+            if (alu.fechaNacimiento != null)
+            {
+                <div class="row">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-3">Fecha de nacimiento</div>
+                    <div class="col-md-5">@alu.fechaNacimiento.Date</div>
+                </div>
+            }
+
+            if (alu.edad != null)
+            {
+                <div class="row">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-3">Edad</div>
+                    <div class="col-md-5">@alu.edad años</div>
+                </div>
+            }
+
+            if (alu.user.mail != null)
+            {
+                <div class="row">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-3">E-Mail</div>
+                    <div class="col-md-5">@alu.user.mail</div>
+                </div>
+            }
+            <hr />
+            if (alu.entrenamientos != null && alu.entrenamientos.Count > 0)
+            {
+                <div class="row">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-3">Entrenamientos:</div>
+                    <div class="col-md-5"></div>
+                </div>
+                foreach (EntrenamientoModel entrenamiento in alu.entrenamientos)
+                {
+                    <div class="row">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-3">@entrenamiento.nombre</div>
+                        <div class="col-md-5">@entrenamiento.descripcion</div>
+                    </div>
+                }
+            }
+            else
+            {
+                <div class="row">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-3">Aún no tenés entrenamientos asignados</div>
+                </div>
+            }
+
+            if (alu.teams != null && alu.teams.Count > 0)
+            {
+                <div class="row">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-3">Teams:</div>
+                    <div class="col-md-5"></div>
+                </div>
+                foreach (TeamModel team in alu.teams)
+                {
+                    <div class="row">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-3">@team.nombre</div>
+                        <div class="col-md-5">@team.descripcion</div>
+                    </div>
+                }
+            }
+            else
+            {
+                <div class="row">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-3">Aún no tenés teams asignados</div>
+                </div>
+            }
+            <hr />
+        }
+
+
+
+
     </div>
 
     }

@@ -10,7 +10,5 @@ namespace ProgIII_EasyFitness_RoccaFederico.Models
         public Int64 id { get; set; }
         public string nombre { get; set; }
         public string descripcion { get; set; }
-        public List<AlumnoModel> alumnos { get; set; }
-        public EntrenadorModel entrenador { get; set; }
     }
 }
