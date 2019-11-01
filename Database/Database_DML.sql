@@ -90,5 +90,17 @@ INSERT [dbo].[Alumnos] ([id], [personaId], [entrenamientoID], [teamID]) VALUES (
 GO
 INSERT [dbo].[Alumnos] ([id], [personaId], [entrenamientoID], [teamID]) VALUES (10, 2, 2, 2)
 GO
+INSERT [dbo].[Alumnos] ([id], [personaId], [entrenamientoID], [teamID]) VALUES (11, 2, 1, 2)
+GO
+INSERT [dbo].[Alumnos] ([id], [personaId], [entrenamientoID], [teamID]) VALUES (12, 2, 2, 1)
+GO
+INSERT [dbo].[Alumnos] ([id], [personaId], [entrenamientoID], [teamID]) VALUES (13, 2, 3, 1)
+GO
+INSERT [dbo].[Alumnos] ([id], [personaId], [entrenamientoID], [teamID]) VALUES (14, 2, 3, 3)
+GO
+INSERT [dbo].[Alumnos] ([id], [personaId], [entrenamientoID], [teamID]) VALUES (17, 2, 3, 4)
+GO
+INSERT [dbo].[Alumnos] ([id], [personaId], [entrenamientoID], [teamID]) VALUES (18, 2, 3, 5)
+GO
 SET IDENTITY_INSERT [dbo].[Alumnos] OFF
 GO
