@@ -125,6 +125,7 @@
     <Compile Include="Controllers\AlumnoMainController.cs" />
     <Compile Include="Controllers\EjercicioController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\RecuperarCuentaController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -163,8 +164,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Ejercicio\Lista.cshtml" />
   </ItemGroup>
@@ -185,11 +184,17 @@
     <Content Include="Views\AlumnoMain\Index.cshtml" />
     <Content Include="Views\AlumnoEntrenamiento\Index.cshtml" />
     <Content Include="Views\AlumnoDatos\Index.cshtml" />
+    <Content Include="Views\RecuperarCuenta\Index.cshtml" />
+    <Content Include="Views\RecuperarCuenta\Recovered.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataGateway\DataGateway.csproj">
       <Project>{def24f88-048b-4270-81b3-32e48d2c1e55}</Project>
       <Name>DataGateway</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Utils\Utils.csproj">
+      <Project>{72077ea6-cc82-40ec-84a5-400b50060806}</Project>
+      <Name>Utils</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
