@@ -126,6 +126,7 @@
     <Compile Include="Controllers\EjercicioController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\RecuperarCuentaController.cs" />
+    <Compile Include="Controllers\RegistroUsuarioController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -186,6 +187,7 @@
     <Content Include="Views\AlumnoDatos\Index.cshtml" />
     <Content Include="Views\RecuperarCuenta\Index.cshtml" />
     <Content Include="Views\RecuperarCuenta\Recovered.cshtml" />
+    <Content Include="Views\RegistroUsuario\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataGateway\DataGateway.csproj">
