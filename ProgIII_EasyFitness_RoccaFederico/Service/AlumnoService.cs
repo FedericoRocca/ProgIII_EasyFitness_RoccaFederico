@@ -41,12 +41,12 @@ namespace ProgIII_EasyFitness_RoccaFederico.Service
             try
             {
                 DDBBGateway data = new DDBBGateway();
-                data.prepareQuery("" +
+                data.prepareQuery(
                     "select Personas.dni, Personas.fechaNacimiento, Personas.apellido, Personas.nombre, Usuarios.id, Usuarios.mail, " +
                     "Usuarios.password, Alumnos.id as 'alumnoId', Alumnos.entrenamientoID, " +
                     "Alumnos.personaId, Alumnos.teamID from Usuarios inner join Alumnos on " +
                     "Alumnos.id = Usuarios.id inner join Personas on Personas.id = Alumnos.id " +
-                    "where Usuarios.mail =  " + _Mail + "");
+                    "where Usuarios.mail = '" + _Mail.ToString() + "'");
                 data.sendQuery();
                 data.getReader().Read();
                 AlumnoModel aux = new AlumnoModel();
