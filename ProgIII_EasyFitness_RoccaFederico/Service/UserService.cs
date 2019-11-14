@@ -146,5 +146,24 @@ namespace ProgIII_EasyFitness_RoccaFederico.Service
                 throw ex;
             }
         }
+
+        public bool mailExists(string _Mail)
+        {
+            try
+            {
+                DDBBGateway data = new DDBBGateway();
+                data.prepareQuery("select count(*) from Usuarios where Mail = '" + _Mail + "'");
+                if (data.sendScalarQuery() <= 0)
+                {
+                    return false;
+                }
+                else return true;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
     }
 }
