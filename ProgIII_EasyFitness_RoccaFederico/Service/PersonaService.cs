@@ -36,8 +36,18 @@ namespace ProgIII_EasyFitness_RoccaFederico.Service
                 DDBBGateway userData = new DDBBGateway();
                 DDBBGateway personaData = new DDBBGateway();
                 userData.prepareQuery("insert into Usuarios values('" + _Persona.user.mail + "', '" + _Persona.user.password + "');");
-                userData.sendQuery();
-                personaData.prepareQuery("");
+                userData.sendStatement();
+                if(userData.getAffectedRows() <= 0)
+                {
+                    throw new Exception("Error al dar de alta usuario en base de datos");
+                }
+                DDBBGateway userQueryID = new DDBBGateway();
+                userQueryID.prepareQuery("select top 1 id from Usuarios order by id DESC");
+                userQueryID.sendQuery();
+                int userId = (int)userQueryID.getReader()["id"] + 1;
+                personaData.prepareQuery("insert into Personas values ('" +  _Persona.nombre + "', " +
+                    "'" + _Persona.apellido + "', '" + _Persona.dni + "', '1998-01-02 00:00:00.000', '" + userId + "')");
+                personaData.sendQuery();
             }
             catch (Exception ex)
             {

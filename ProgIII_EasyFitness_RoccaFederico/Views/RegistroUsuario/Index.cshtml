@@ -1,81 +1,91 @@
 ﻿@model ProgIII_EasyFitness_RoccaFederico.Models.PersonaModel
 @using ProgIII_EasyFitness_RoccaFederico.Service;
+@using ProgIII_EasyFitness_RoccaFederico.Models;
 
 @{
     ViewBag.Title = "Index";
 }
 
-@{ 
+@{
     bool validMail = false;
     bool validDNI = false;
 }
-<h2>Registrarme</h2>
 @using (Html.BeginForm())
 {
-<div class="form-horizontal w-25" style="display:table; margin:auto">
-    <div class="form-group d-flex justify-content-center">
-        @Html.EditorFor(model => model.user.mail, new { htmlAttributes = new { @class = "form-control", @placeholder = "E-Mail", @type = "email", required = "required" } })
-    </div>
-    @{
-        if (IsPost)
-        {
-            /// Valido que el mail no exista
-            UserService uServ = new UserService();
-            if (uServ.mailExists(Request.Form["user.mail"]) == true)
+    <div class="form-horizontal w-25" style="display:table; margin:auto">
+        <div class="form-group d-flex justify-content-center">
+            @Html.EditorFor(model => model.user.mail, new { htmlAttributes = new { @class = "form-control", @placeholder = "E-Mail", @type = "email", required = "required" } })
+        </div>
+        @{
+            if (IsPost)
             {
-                <div class="form-group alert alert-danger" role="alert">
-                    El E-Mail ingresado ya existe. <br />
-                    Si olvidaste tu contraseña ingresá @Html.ActionLink("acá", "Index", "RecuperarCuenta", null, null)
-                </div>
-            }
-            else
-            {
-                validMail = true;
-            }
-        }
-    }
-    <div class="form-group d-flex justify-content-center">
-        @Html.EditorFor(model => model.user.password, new { htmlAttributes = new { @class = "form-control", @placeholder = "Password", @type = "password", required = "required" } })
-    </div>
-    <div class="form-group d-flex justify-content-center">
-        @Html.EditorFor(model => model.nombre, new { htmlAttributes = new { @class = "form-control", @placeholder = "Nombre", required = "required" } })
-    </div>
-    <div class="form-group d-flex justify-content-center">
-        @Html.EditorFor(model => model.apellido, new { htmlAttributes = new { @class = "form-control", @placeholder = "Apellido", required = "required" } })
-    </div>
-    <div class="form-group d-flex justify-content-center">
-        @Html.EditorFor(model => model.dni, new { htmlAttributes = new { @class = "form-control", @placeholder = "D.N.I.", @type = "number", @max = 12, required = "required" } })
-    </div>
-    @{
-        if (IsPost)
-        {
-            /// Valido que el DNI no exista
-            PersonaService pServ = new PersonaService();
-            if (pServ.DNIExists(int.Parse(Request.Form["dni"])) == true)
-            {
-                <div class="form-group alert alert-danger" role="alert">
-                    El DNI ingresado ya existe.
-                </div>
-            }
-            else
-            {
-                validDNI = true;
+                /// Valido que el mail no exista
+                UserService uServ = new UserService();
+                if (uServ.mailExists(Request.Form["user.mail"]) == true)
+                {
+                    <div class="form-group alert alert-danger" role="alert">
+                        El E-Mail ingresado ya existe. <br />
+                        Si olvidaste tu contraseña ingresá @Html.ActionLink("acá", "Index", "RecuperarCuenta", null, null)
+                    </div>
+                }
+                else
+                {
+                    validMail = true;
+                }
             }
         }
-    }
-    <div class="form-group d-flex justify-content-center">
-        @Html.EditorFor(model => model.fechaNacimiento, new { htmlAttributes = new { @class = "form-control", @placeholder = "Fecha de nacimiento", required = "required" } })
-    </div>
-    <div class="form-group d-flex justify-content-center">
-        <input type="submit" value="Registrarme" class="btn btn-success" />
-
-        @{ 
-            if(IsPost && validDNI && validMail)
+        <div class="form-group d-flex justify-content-center">
+            @Html.EditorFor(model => model.user.password, new { htmlAttributes = new { @class = "form-control", @placeholder = "Password", @type = "password", required = "required" } })
+        </div>
+        <div class="form-group d-flex justify-content-center">
+            @Html.EditorFor(model => model.nombre, new { htmlAttributes = new { @class = "form-control", @placeholder = "Nombre", required = "required" } })
+        </div>
+        <div class="form-group d-flex justify-content-center">
+            @Html.EditorFor(model => model.apellido, new { htmlAttributes = new { @class = "form-control", @placeholder = "Apellido", required = "required" } })
+        </div>
+        <div class="form-group d-flex justify-content-center">
+            @Html.EditorFor(model => model.dni, new { htmlAttributes = new { @class = "form-control", @placeholder = "D.N.I.", @type = "number", @max = 12, required = "required" } })
+        </div>
+        @{
+            if (IsPost)
             {
-
+                /// Valido que el DNI no exista
+                PersonaService pServ = new PersonaService();
+                if (pServ.DNIExists(int.Parse(Request.Form["dni"])) == true)
+                {
+                    <div class="form-group alert alert-danger" role="alert">
+                        El DNI ingresado ya existe.
+                    </div>
+                }
+                else
+                {
+                    validDNI = true;
+                }
             }
         }
+        <div class="form-group d-flex justify-content-center">
+            @Html.EditorFor(model => model.fechaNacimiento, new { htmlAttributes = new { @class = "form-control", @placeholder = "Fecha de nacimiento", required = "required" } })
+        </div>
+        <div class="form-group d-flex justify-content-center">
+            <input type="submit" value="Registrarme" class="btn btn-success" />
 
+            @{
+                if (IsPost && validDNI && validMail)
+                {
+                    //// Doy de alta user + Persona
+                    PersonaService pServ = new PersonaService();
+                    PersonaModel pModel = new PersonaModel();
+
+                    pModel.user.mail = Request.Form["user.mail"];
+                    pModel.user.password = Request.Form["user.password"];
+                    pModel.apellido = Request.Form["apellido"];
+                    pModel.nombre = Request.Form["nombre"];
+                    pModel.dni = int.Parse(Request.Form["dni"]);
+
+                    pServ.altaPersona(pModel);
+                }
+            }
+
+        </div>
     </div>
-</div>
 }

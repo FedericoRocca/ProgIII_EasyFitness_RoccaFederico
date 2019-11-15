@@ -14,5 +14,10 @@ namespace ProgIII_EasyFitness_RoccaFederico.Models
         public int dni { get; set; }
         public DateTime fechaNacimiento { get; set; }
         public Int16 edad { get; set; }
+
+        public PersonaModel()
+        {
+            user = new UsuarioModel();
+        }
     }
 }
