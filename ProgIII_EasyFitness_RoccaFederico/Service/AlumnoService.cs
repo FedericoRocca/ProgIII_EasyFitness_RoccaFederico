@@ -41,31 +41,29 @@ namespace ProgIII_EasyFitness_RoccaFederico.Service
             try
             {
                 DDBBGateway data = new DDBBGateway();
-                data.prepareQuery(
-                    "select Personas.dni, Personas.fechaNacimiento, Personas.apellido, Personas.nombre, Usuarios.id, Usuarios.mail, " +
-                    "Usuarios.password, Alumnos.id as 'alumnoId', Alumnos.entrenamientoID, " +
-                    "Alumnos.personaId, Alumnos.teamID from Usuarios inner join Alumnos on " +
-                    "Alumnos.id = Usuarios.id inner join Personas on Personas.id = Alumnos.id " +
-                    "where Usuarios.mail = '" + _Mail.ToString() + "'");
+                data.prepareQuery("select Personas.dni, Personas.fechaNacimiento, Personas.apellido, Personas.nombre, Usuarios.id, Usuarios.mail, Usuarios.password, Alumnos.id as 'alumnoId', Alumnos.entrenamientoID, Alumnos.personaId, Alumnos.teamID from Usuarios inner join Alumnos on Alumnos.id = Usuarios.id left join Personas on Personas.id = Alumnos.id inner join Entrenamientos on Entrenamientos.id = Alumnos.entrenamientoID inner join Teams on Teams.id = Alumnos.id where Usuarios.mail = '" + _Mail.ToString() + "'");
                 data.sendQuery();
                 data.getReader().Read();
                 AlumnoModel aux = new AlumnoModel();
 
-                aux.user.id = (Int64)data.getReader()["id"];
-                aux.user.mail = data.getReader()["mail"].ToString();
-                aux.user.password = data.getReader()["password"].ToString();
-                aux.id = (Int64)data.getReader()["alumnoId"];
-                aux.personaId = (Int64)data.getReader()["personaId"];
-                aux.entrenamientos = new List<EntrenamientoModel>();
-                aux.entrenamientos = loadEntrenamientosByPersonId(aux.id);
-                aux.apellido = data.getReader()["apellido"].ToString();
-                aux.nombre = data.getReader()["nombre"].ToString();
-                aux.dni = (int)data.getReader()["dni"];
-                aux.teams = new List<TeamModel>();
-                aux.teams = loadTeamsByPersonId(aux.id);
-                aux.fechaNacimiento = (DateTime)data.getReader()["fechaNacimiento"];
-                // Calculo de edad
-                aux.edad = (short)Math.Floor((DateTime.Now - aux.fechaNacimiento.Date).TotalDays / 365.25D);
+                if( data.getReader().HasRows )
+                {
+                    aux.user.id = (Int64)data.getReader()["id"];
+                    aux.user.mail = data.getReader()["mail"].ToString();
+                    aux.user.password = data.getReader()["password"].ToString();
+                    aux.id = (Int64)data.getReader()["alumnoId"];
+                    aux.personaId = (Int64)data.getReader()["personaId"];
+                    aux.entrenamientos = new List<EntrenamientoModel>();
+                    aux.entrenamientos = loadEntrenamientosByPersonId(aux.id);
+                    aux.apellido = data.getReader()["apellido"].ToString();
+                    aux.nombre = data.getReader()["nombre"].ToString();
+                    aux.dni = (int)data.getReader()["dni"];
+                    aux.teams = new List<TeamModel>();
+                    aux.teams = loadTeamsByPersonId(aux.id);
+                    aux.fechaNacimiento = (DateTime)data.getReader()["fechaNacimiento"];
+                    // Calculo de edad
+                    aux.edad = (short)Math.Floor((DateTime.Now - aux.fechaNacimiento.Date).TotalDays / 365.25D);
+                }
 
 
                 return aux;
@@ -73,7 +71,6 @@ namespace ProgIII_EasyFitness_RoccaFederico.Service
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
         }
