@@ -3,4 +3,3 @@ C:\Users\frocc\Desktop\Repos\TPC_RoccaFederico\Utils\bin\Debug\Utils.pdb
 C:\Users\frocc\Desktop\Repos\TPC_RoccaFederico\Utils\obj\Debug\Utils.csprojAssemblyReference.cache
 C:\Users\frocc\Desktop\Repos\TPC_RoccaFederico\Utils\obj\Debug\Utils.dll
 C:\Users\frocc\Desktop\Repos\TPC_RoccaFederico\Utils\obj\Debug\Utils.pdb
-C:\Users\frocc\Desktop\Repos\TPC_RoccaFederico\Utils\obj\Debug\Utils.csproj.CoreCompileInputs.cache

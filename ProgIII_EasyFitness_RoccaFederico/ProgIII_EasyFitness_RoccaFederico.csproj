@@ -125,7 +125,7 @@
     <Compile Include="Controllers\AlumnoMainController.cs" />
     <Compile Include="Controllers\EjercicioController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\PruebaController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\RecuperarCuentaController.cs" />
     <Compile Include="Controllers\RegistroUsuarioController.cs" />
     <Compile Include="Global.asax.cs">
@@ -173,7 +173,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Default\" />
-    <Folder Include="Views\Prueba\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -191,7 +190,7 @@
     <Content Include="Views\RecuperarCuenta\Index.cshtml" />
     <Content Include="Views\RecuperarCuenta\Recovered.cshtml" />
     <Content Include="Views\RegistroUsuario\Index.cshtml" />
-    <Content Include="Views\PruebaView.cshtml" />
+    <Content Include="Views\Login\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataGateway\DataGateway.csproj">
