@@ -10,73 +10,58 @@
 @{
     try
     {
+        // Obtengo el mail del alumno cargado en la sessión, para traer los datos desde la DDBB
+        string usrMail = Session["usrMail" + Session.SessionID].ToString(); 
+
+        PersonaModel per = new PersonaModel();
+        PersonaService sPers = new PersonaService();
+        per = sPers.getPersonaByMail(usrMail);
+
         AlumnoModel alu = new AlumnoModel();
-        // Obtengo el ID del alumno cargado en la sessión, para traer los datos desde la DDBB
-        alu.user.mail = Session["usrMail" + Session.SessionID].ToString();
-
         AlumnoService aluService = new AlumnoService();
-        alu = aluService.getAlumnoByUsrMail(alu.user.mail.ToString());
-
+        alu = aluService.getAlumnoByUsrMail(usrMail);
 
         //"select * from Usuarios inner join Alumnos on Alumnos.id = Usuarios.id where Usuarios.mail = 2"
 
     <div class="container">
         @{
             <hr />
-            if (alu.nombre != null)
-            {
-                <div class="row">
-                    <div class="col-md-1"></div>
-                    <div class="col-md-3">Nombre</div>
-                    <div class="col-md-5">@alu.nombre</div>
-                </div>
-            }
+            // Datos de la persona
 
-            if (alu.apellido != null)
-            {
-                <div class="row">
-                    <div class="col-md-1"></div>
-                    <div class="col-md-3">Apellido</div>
-                    <div class="col-md-5">@alu.apellido</div>
-                </div>
-            }
+            <div class="row">
+                <div class="col-md-1"></div>
+                <div class="col-md-3">Nombre:</div>
+                <div class="col-md-5">@per.nombre</div>
+            </div>
+            <div class="row">
+                <div class="col-md-1"></div>
+                <div class="col-md-3">Apellido:</div>
+                <div class="col-md-5">@per.apellido</div>
+            </div>
+            <div class="row">
+                <div class="col-md-1"></div>
+                <div class="col-md-3">D.N.I.:</div>
+                <div class="col-md-5">@per.dni</div>
+            </div>
+            <div class="row">
+                <div class="col-md-1"></div>
+                <div class="col-md-3">Fecha de nacimiento:</div>
+                <div class="col-md-5">@per.fechaNacimiento.ToString("dd/MM/yyyy")</div>
+            </div>
+            <div class="row">
+                <div class="col-md-1"></div>
+                <div class="col-md-3">E-Mail:</div>
+                <div class="col-md-5">@per.user.mail</div>
+            </div>
+            <div class="row">
+                <div class="col-md-1"></div>
+                <div class="col-md-3">Edad:</div>
+                <div class="col-md-5">@per.edad</div>
+            </div>
 
-            if (alu.dni != null)
-            {
-                <div class="row">
-                    <div class="col-md-1"></div>
-                    <div class="col-md-3">DNI</div>
-                    <div class="col-md-5">@alu.dni</div>
-                </div>
-            }
 
-            if (alu.fechaNacimiento != null)
-            {
-                <div class="row">
-                    <div class="col-md-1"></div>
-                    <div class="col-md-3">Fecha de nacimiento</div>
-                    <div class="col-md-5">@alu.fechaNacimiento.Date</div>
-                </div>
-            }
-
-            if (alu.edad != null)
-            {
-                <div class="row">
-                    <div class="col-md-1"></div>
-                    <div class="col-md-3">Edad</div>
-                    <div class="col-md-5">@alu.edad años</div>
-                </div>
-            }
-
-            if (alu.user.mail != null)
-            {
-                <div class="row">
-                    <div class="col-md-1"></div>
-                    <div class="col-md-3">E-Mail</div>
-                    <div class="col-md-5">@alu.user.mail</div>
-                </div>
-            }
             <hr />
+            //Datos del alumno
             if (alu.entrenamientos != null && alu.entrenamientos.Count > 0)
             {
                 <div class="row">
