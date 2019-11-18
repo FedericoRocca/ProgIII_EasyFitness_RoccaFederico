@@ -22,7 +22,7 @@ namespace ProgIII_EasyFitness_RoccaFederico.Service
                     EjercicioModel tmp = new EjercicioModel();
                     tmp.id = (Int64)ddbbdata.getReader()["ID"];
                     tmp.nombre = ddbbdata.getReader()["Nombre"].ToString();
-                    tmp.tipo = (int)ddbbdata.getReader()["Tipo"];
+                    tmp.tipo = ddbbdata.getReader()["Tipo"].ToString();
                     tmp.urlEjemplo = ddbbdata.getReader()["UrlEjemplo"].ToString();
                     if (!Convert.IsDBNull(ddbbdata.getReader()["Tiempo"]))
                     {
@@ -44,5 +44,42 @@ namespace ProgIII_EasyFitness_RoccaFederico.Service
                 throw ex;
             }
         }
+
+        public List<EjercicioModel> getEjerciciosByPersonaID(Int64 _personaID)
+        {
+            try
+            {
+                DDBBGateway data = new DDBBGateway();
+                data.prepareQuery(
+                    "select Ejercicios.id, Ejercicios.nombre, Ejercicios.tipo, Ejercicios.urlEjemplo, Ejercicios.tiempo, Ejercicios.repeticiones, " +
+                    "Ejercicios.comentarios, Ejercicios.intensidad " +
+                    "from  Entrenadores " +
+                    "inner join Ejercicios on Entrenadores.ejercicioId = Ejercicios.id " +
+                    "where personaId = '" + _personaID + "'");
+                data.sendQuery();
+                List<EjercicioModel> aux = new List<EjercicioModel>();
+
+                while(data.getReader().Read())
+                {
+                    aux.Add(new EjercicioModel(
+                        (long)data.getReader()["id"],
+                        data.getReader()["nombre"].ToString(),
+                        data.getReader()["tipo"].ToString(),
+                        data.getReader()["urlEjemplo"].ToString(),
+                        (int)data.getReader()["tiempo"],
+                        (int)data.getReader()["repeticiones"],
+                        data.getReader()["comentarios"].ToString(),
+                        (short)data.getReader()["intensidad"])); ;
+                }
+
+                return aux;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
     }
 }

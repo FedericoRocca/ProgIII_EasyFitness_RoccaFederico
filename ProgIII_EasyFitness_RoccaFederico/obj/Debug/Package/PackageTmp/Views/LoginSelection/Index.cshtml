@@ -1,0 +1,11 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Hoy quiero...</h2>
+<div class="btn-group-vertical btn-group-lg" role="group" aria-label="Basic example">
+    @Html.ActionLink("Aprender...", "Index", "AlumnoMain", null, new { @class = "btn btn-dark" })
+    @Html.ActionLink("Enseñar...", "Index", "EntrenadorMain", null, new { @class = "btn btn-dark" })
+</div>

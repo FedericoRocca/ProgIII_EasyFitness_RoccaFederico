@@ -9,7 +9,7 @@ namespace ProgIII_EasyFitness_RoccaFederico.Models
     {
         public Int64 id { get; set; }
         public string nombre { get; set; }
-        public int tipo { get; set; }
+        public string tipo { get; set; }
         public string urlEjemplo { get; set; }
         public int? tiempo { get; set; }
         public int? repeticiones { get; set; }
@@ -19,7 +19,7 @@ namespace ProgIII_EasyFitness_RoccaFederico.Models
         public EjercicioModel(
             Int64 _id, 
             string _nombre,
-            int _tipo, 
+            string _tipo, 
             string _urlEjemplo, 
             int? _tiempo, 
             int? _repeticiones,

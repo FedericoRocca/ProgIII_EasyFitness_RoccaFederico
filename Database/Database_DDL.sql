@@ -1,17 +1,18 @@
-﻿-- Me conecto a Master
-USE MASTER
-GO
-
--- Dropeo la base de datos solo si existe
-DROP DATABASE IF EXISTS EasyFitness_DB;
-GO
-
--- Creo la base de datos y me conecto
-CREATE DATABASE EasyFitness_DB
-GO
-
-USE EasyFitness
-GO
+﻿-- No tiene uso en el caso de Azure, ya que no podés usar la master
+-- -- Me conecto a Master
+-- USE MASTER
+-- GO
+-- 
+-- -- Dropeo la base de datos solo si existe
+-- DROP DATABASE IF EXISTS EasyFitness_DB;
+-- GO
+-- 
+-- -- Creo la base de datos y me conecto
+-- CREATE DATABASE EasyFitness_DB
+-- GO
+-- 
+-- USE EasyFitness
+-- GO
 
 DROP TABLE IF EXISTS Alumnos
 DROP TABLE IF EXISTS Entrenadores
@@ -28,7 +29,7 @@ CREATE TABLE Ejercicios
 (
 	id BIGINT NOT NULL PRIMARY KEY IDENTITY (1,1),
 	nombre VARCHAR(100) NOT NULL,
-	tipo INT NOT NULL,
+	tipo VARCHAR(50) NOT NULL,
 	urlEjemplo VARCHAR(100) NOT NULL,
 	tiempo INT NULL,
 	repeticiones INT NULL,

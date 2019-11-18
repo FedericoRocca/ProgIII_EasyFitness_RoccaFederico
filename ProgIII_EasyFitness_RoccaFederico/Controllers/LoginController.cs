@@ -48,6 +48,12 @@ namespace ProgIII_EasyFitness_RoccaFederico.Controllers
                 {
                     Session["usrMail" + Session.SessionID] = usr.mail;
                     Session["userTriedLogin" + Session.SessionID] = null;
+
+                    PersonaService pServ = new PersonaService();
+                    PersonaModel pModel = new PersonaModel();
+                    pModel = pServ.getPersonaByMail(usr.mail);
+
+                    Session["persona" + Session.SessionID] = pModel;
                     return RedirectToAction("Index", "LoginSelection");
                 }
             }

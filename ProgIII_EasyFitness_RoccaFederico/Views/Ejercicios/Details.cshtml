@@ -1,0 +1,70 @@
+﻿@model IEnumerable<ProgIII_EasyFitness_RoccaFederico.Models.EjercicioModel>
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutEntrenador.cshtml";
+}
+
+<h2>Details</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Ejercicio
+        </th>
+        <th>
+            Tipo
+        </th>
+        <th>
+            Video
+        </th>
+        <th>
+            Duración
+        </th>
+        <th>
+            Repeticiones
+        </th>
+        <th>
+            Comentarios
+        </th>
+        <th>
+            Intensidad
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr style="word-break:break-all">
+        <td>
+            @Html.DisplayFor(modelItem => item.nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tipo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.urlEjemplo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tiempo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.repeticiones)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.comentarios)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.intensidad)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+        </td>
+    </tr>
+}
+
+</table>

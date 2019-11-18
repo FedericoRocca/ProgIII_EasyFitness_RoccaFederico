@@ -2,11 +2,11 @@
 GO
 SET IDENTITY_INSERT [dbo].[Ejercicios] ON 
 GO
-INSERT [dbo].[Ejercicios] ([id], [nombre], [tipo], [urlEjemplo], [tiempo], [repeticiones], [comentarios], [intensidad]) VALUES (1, N'ejerc1', 1, N'1', 1, 1, N'1', 1)
+INSERT [dbo].[Ejercicios] ([id], [nombre], [tipo], [urlEjemplo], [tiempo], [repeticiones], [comentarios], [intensidad]) VALUES (1, N'ejerc1', 'Tipo1', N'1', 1, 1, N'1', 1)
 GO
-INSERT [dbo].[Ejercicios] ([id], [nombre], [tipo], [urlEjemplo], [tiempo], [repeticiones], [comentarios], [intensidad]) VALUES (2, N'ejerc2', 2, N'2', 2, 2, N'2', 2)
+INSERT [dbo].[Ejercicios] ([id], [nombre], [tipo], [urlEjemplo], [tiempo], [repeticiones], [comentarios], [intensidad]) VALUES (2, N'ejerc2', 'Tipo2', N'2', 2, 2, N'2', 2)
 GO
-INSERT [dbo].[Ejercicios] ([id], [nombre], [tipo], [urlEjemplo], [tiempo], [repeticiones], [comentarios], [intensidad]) VALUES (3, N'ejerc3', 3, N'3', 3, 3, N'3', 3)
+INSERT [dbo].[Ejercicios] ([id], [nombre], [tipo], [urlEjemplo], [tiempo], [repeticiones], [comentarios], [intensidad]) VALUES (3, N'ejerc3', 'Tipo3', N'3', 3, 3, N'3', 3)
 GO
 SET IDENTITY_INSERT [dbo].[Ejercicios] OFF
 GO
