@@ -64,7 +64,11 @@ namespace ProgIII_EasyFitness_RoccaFederico.Controllers
             }
             catch (Exception ex)
             {
-                throw ex;
+                Session["exceptionMessage" + Session.SessionID] = ex.Message;
+                Session["exceptionSource" + Session.SessionID] = ex.Source;
+                Session["exceptionStackTrace" + Session.SessionID] = ex.StackTrace;
+                Session["exceptionTargetSite" + Session.SessionID] = ex.TargetSite;
+                return RedirectToAction("Index", "Error");
             }
         }
 

@@ -34,6 +34,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -127,7 +128,10 @@
     <Compile Include="Controllers\AlumnoEntrenamientoController.cs" />
     <Compile Include="Controllers\AlumnoMainController.cs" />
     <Compile Include="Controllers\EjercicioController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\LoginSelectionController.cs" />
     <Compile Include="Controllers\RecuperarCuentaController.cs" />
     <Compile Include="Controllers\RegistroUsuarioController.cs" />
     <Compile Include="Controllers\RegistryController.cs" />
@@ -200,6 +204,9 @@
     <None Include="Properties\PublishProfiles\EasyFitness - Web Deploy.pubxml" />
     <Content Include="Views\Shared\_LayoutAlumno.cshtml" />
     <Content Include="Views\Shared\_LayoutEntrenador.cshtml" />
+    <Content Include="Views\Error\Index.cshtml" />
+    <Content Include="Views\LoginSelection\Index.cshtml" />
+    <Content Include="Views\Login\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataGateway\DataGateway.csproj">

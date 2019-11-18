@@ -1,0 +1,29 @@
+﻿@using Utils;
+@model Exception
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Oops</h2>
+@{
+    string exceptionMessage = Session["exceptionMessage" + Session.SessionID].ToString();
+    string exceptionSource = Session["exceptionSource" + Session.SessionID].ToString();
+    string exceptionStackTrace = Session["exceptionStackTrace" + Session.SessionID].ToString();
+    string exceptionTargetSite = Session["exceptionTargetSite" + Session.SessionID].ToString();
+    DateTime timeStamp = DateTime.Now;
+
+    string FullException = "Cuando: " + timeStamp.ToString() + "<br />" +
+        "Mensaje: " + exceptionMessage + "<br />" +
+        "Source: " + exceptionSource + "<br />" +
+        "StackTrace: " + exceptionStackTrace + "<br />" +
+        "TargetSite: " + exceptionTargetSite;
+
+    MailSender mail = new MailSender("easyfitnessrecover@gmail.com", "453by6g3gy56gy534");
+    mail.sendMail(
+            "EasyFitnessRecover@gmail.com",
+            "frocca17@gmail.com",
+            "Excepción encontrada en EasyFitness",
+            FullException
+            );
+}

@@ -35,7 +35,6 @@ namespace ProgIII_EasyFitness_RoccaFederico.Service
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
         }
@@ -61,7 +60,6 @@ namespace ProgIII_EasyFitness_RoccaFederico.Service
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
         }
