@@ -1,4 +1,4 @@
-﻿USE [EasyFitness]
+﻿USE [EasyFitness_DB]
 GO
 SET IDENTITY_INSERT [dbo].[Ejercicios] ON 
 GO

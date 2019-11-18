@@ -7,8 +7,10 @@
 </head>
 <body>
     <hgroup>
-        <h1>Error.</h1>
-        <h2>Error al procesar la solicitud.</h2>
+        <h1>Upss.</h1>
+        <h2>Se produjo un error al procesar la solicitud.</h2>
+        <h3>Seguramente es culpa del programador...</h3>
+        @Html.ActionLink("Volver al menú principal", "Index", "Home", null, new { @class = "btn btn-dark" })
     </hgroup>
 </body>
 </html>

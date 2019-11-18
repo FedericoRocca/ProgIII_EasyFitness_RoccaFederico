@@ -10,7 +10,7 @@ namespace ProgIII_EasyFitness_RoccaFederico.Models
 {
     public class AlumnoModel : PersonaModel
     {
-        public Int64 id { get; set; }
+        public Int64? id { get; set; }
         public Int64 personaId { get; set; }
         public List<EntrenamientoModel> entrenamientos { get; set; }
         public List<TeamModel> teams { get; set; }
@@ -18,6 +18,8 @@ namespace ProgIII_EasyFitness_RoccaFederico.Models
         public AlumnoModel()
         {
             user = new UsuarioModel();
+            entrenamientos = new List<EntrenamientoModel>();
+            teams = new List<TeamModel>();
         }
 
     }

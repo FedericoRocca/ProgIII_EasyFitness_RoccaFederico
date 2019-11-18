@@ -1,0 +1,21 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Gimnasios cercanos</h2>
+@{ 
+    string tmp = Session["usrMail" + Session.SessionID].ToString();
+    var asd = 120;
+
+    }
+<iframe style="border: 0;"
+        src="https://www.google.com/maps/embed/v1/search?key=AIzaSyAAyyUx9zFwY76PRG80r4qTjtH4UffsRY0&q=gimnasio" 
+        width="600" height="450" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
+
+<div class="btn-group fixed-bottom" role="group" style="position:fixed">
+    <button type="button" class="btn btn-secondary">Mis entrenamientos</button>
+    @*<a href="https://www.google.com/maps/search/gimnasio" class="btn btn-secondary">Gimnasios cercanos</a>*@
+    @*<button type="button" class="btn btn-secondary">Gimnasios cercanos</button>*@
+    <a href="~/AlumnoDatos" class="btn btn-secondary">Mis datos</a>
+</div>

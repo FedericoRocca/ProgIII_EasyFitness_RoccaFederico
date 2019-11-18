@@ -22,9 +22,11 @@ namespace DataGateway
         public DDBBGateway()
         {
             // ---------------------------- Desktop-PC ----------------------------
-            connectionString = "data source=DESKTOP-BA6HNP1\\SQLEXPRESS01; integrated security=sspi; initial catalog=EasyFitness;";
+            // connectionString = "data source=DESKTOP-BA6HNP1\\SQLEXPRESS01; integrated security=sspi; initial catalog=EasyFitness;";
             // ---------------------------- Notebook-PC ----------------------------
             // connectionString = "data source=DESKTOP-SI2UFE1\\SQLEXPRESS; integrated security=sspi; initial catalog=EasyFitness;";
+            // ---------------------------- Azure cloud DDBB ----------------------------
+            connectionString = "Server=tcp:easyfitnessddbb.database.windows.net,1433;Initial Catalog=EasyFitness_DB;Persist Security Info=False;User ID=sk8avp;Password=Magus_000;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
 
             connection.ConnectionString = connectionString;
             command.Connection = connection;

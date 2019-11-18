@@ -3,11 +3,11 @@ USE MASTER
 GO
 
 -- Dropeo la base de datos solo si existe
-DROP DATABASE IF EXISTS EasyFitness;
+DROP DATABASE IF EXISTS EasyFitness_DB;
 GO
 
 -- Creo la base de datos y me conecto
-CREATE DATABASE EasyFitness
+CREATE DATABASE EasyFitness_DB
 GO
 
 USE EasyFitness

@@ -11,5 +11,13 @@ namespace ProgIII_EasyFitness_RoccaFederico.Models
         public List<RutinaModel> rutinas { get; set; }
         public string descripcion { get; set; }
         public string nombre { get; set; }
+
+        public EntrenamientoModel() { }
+        public EntrenamientoModel(Int64 _id, string _descripcion, string _nombre)
+        {
+            id = _id;
+            descripcion = _descripcion;
+            nombre = _nombre;
+        }
     }
 }

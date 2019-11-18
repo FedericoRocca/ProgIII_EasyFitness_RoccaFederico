@@ -1,0 +1,25 @@
+﻿@using ProgIII_EasyFitness_RoccaFederico.Service;
+@using ProgIII_EasyFitness_RoccaFederico.Models;
+
+@{
+    ViewBag.Title = "Lista de ejercicios";
+}
+
+    <h2>Lista de ejercicios</h2>
+
+@{
+    EjercicioService ejService = new EjercicioService();
+    List<EjercicioModel> ej = new List<EjercicioModel>();
+    ej = ejService.getEjercicios();
+    <div class="card-group">
+        @for (int i = 0; i < ej.Count; i++)
+        {
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">@ej[i].nombre</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">@ej[i].comentarios</h6>
+                </div>
+            </div>
+        }
+    </div>
+}

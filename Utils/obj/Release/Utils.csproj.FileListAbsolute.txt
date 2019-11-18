@@ -1,0 +1,5 @@
+C:\Users\frocc\Desktop\Repos\TPC_RoccaFederico\Utils\bin\Release\Utils.dll
+C:\Users\frocc\Desktop\Repos\TPC_RoccaFederico\Utils\bin\Release\Utils.pdb
+C:\Users\frocc\Desktop\Repos\TPC_RoccaFederico\Utils\obj\Release\Utils.csprojAssemblyReference.cache
+C:\Users\frocc\Desktop\Repos\TPC_RoccaFederico\Utils\obj\Release\Utils.dll
+C:\Users\frocc\Desktop\Repos\TPC_RoccaFederico\Utils\obj\Release\Utils.pdb

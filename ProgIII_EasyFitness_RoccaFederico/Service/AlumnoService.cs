@@ -9,6 +9,36 @@ namespace ProgIII_EasyFitness_RoccaFederico.Service
 {
     public class AlumnoService
     {
+
+        public List<EntrenamientoModel> getEntrenamientosByAluID(Int64? _aluID)
+        {
+            try
+            {
+                List<EntrenamientoModel> tmp = new List<EntrenamientoModel>();
+                DDBBGateway data = new DDBBGateway();
+
+                data.prepareQuery(
+                    "select Entrenamientos.id, Entrenamientos.descripcion, Entrenamientos.nombre " +
+                    "from Alumnos " +
+                    "left join Entrenamientos on Alumnos.entrenamientoID = Entrenamientos.id " +
+                    "where Alumnos.personaId = '" + _aluID + "'");
+                data.sendQuery();
+                while (data.getReader().Read())
+                {
+                    tmp.Add(new EntrenamientoModel(
+                        (Int64)data.getReader()["id"],
+                        data.getReader()["descripcion"].ToString(),
+                        data.getReader()["nombre"].ToString())
+                        );
+                }
+                return tmp;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
         public AlumnoModel getAlumnoByID(Int64 _ID)
         {
             try
@@ -41,33 +71,37 @@ namespace ProgIII_EasyFitness_RoccaFederico.Service
             try
             {
                 DDBBGateway data = new DDBBGateway();
-                data.prepareQuery("select Personas.dni, Personas.fechaNacimiento, Personas.apellido, Personas.nombre, Usuarios.id, Usuarios.mail, Usuarios.password, Alumnos.id as 'alumnoId', Alumnos.entrenamientoID, Alumnos.personaId, Alumnos.teamID from Usuarios inner join Alumnos on Alumnos.id = Usuarios.id left join Personas on Personas.id = Alumnos.id inner join Entrenamientos on Entrenamientos.id = Alumnos.entrenamientoID inner join Teams on Teams.id = Alumnos.id where Usuarios.mail = '" + _Mail.ToString() + "'");
+                data.prepareQuery(
+                    "select Personas.id as 'PersonaID', Personas.nombre, Personas.apellido, Personas.dni, Personas.fechaNacimiento, " +
+                    "Personas.userID as 'userID', Usuarios.mail, Usuarios.password, Alumnos.personaId as 'aluID' " +
+                    "from Personas " +
+                    "inner join Usuarios on Personas.userID = Usuarios.id " +
+                    "left join Alumnos on Personas.id = Alumnos.personaId " +
+                    "where Usuarios.mail = '" + _Mail + "';");
                 data.sendQuery();
                 data.getReader().Read();
                 AlumnoModel aux = new AlumnoModel();
 
-                if( data.getReader().HasRows )
+                if (data.getReader().HasRows)
                 {
-                    aux.user.id = (Int64)data.getReader()["id"];
+
+                    aux.personaId = (Int64)data.getReader()["PersonaID"];
+                    aux.nombre = data.getReader()["nombre"].ToString();
+                    aux.apellido = data.getReader()["apellido"].ToString();
+                    aux.dni = (int)data.getReader()["dni"];
+                    aux.fechaNacimiento = DateTime.Parse(data.getReader()["fechaNacimiento"].ToString());
+                    aux.user.id = (Int64)data.getReader()["userID"];
                     aux.user.mail = data.getReader()["mail"].ToString();
                     aux.user.password = data.getReader()["password"].ToString();
-                    aux.id = (Int64)data.getReader()["alumnoId"];
-                    aux.personaId = (Int64)data.getReader()["personaId"];
-                    aux.entrenamientos = new List<EntrenamientoModel>();
-                    aux.entrenamientos = loadEntrenamientosByPersonId(aux.id);
-                    aux.apellido = data.getReader()["apellido"].ToString();
-                    aux.nombre = data.getReader()["nombre"].ToString();
-                    aux.dni = (int)data.getReader()["dni"];
-                    aux.teams = new List<TeamModel>();
-                    aux.teams = loadTeamsByPersonId(aux.id);
-                    aux.fechaNacimiento = (DateTime)data.getReader()["fechaNacimiento"];
-                    // Calculo de edad
                     aux.edad = (short)Math.Floor((DateTime.Now - aux.fechaNacimiento.Date).TotalDays / 365.25D);
+
+                    EntrenamientoService eServ = new EntrenamientoService();
+                    aux.entrenamientos = eServ.getModelByPersonaID( aux.personaId );
+
+                    TeamService tServ = new TeamService();
+                    aux.teams = tServ.getTeamsByPersonaID( aux.personaId );
                 }
-
-
                 return aux;
-
             }
             catch (Exception ex)
             {

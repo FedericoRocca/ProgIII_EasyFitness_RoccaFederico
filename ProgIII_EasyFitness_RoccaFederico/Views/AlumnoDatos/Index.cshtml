@@ -1,17 +1,20 @@
 ﻿@using ProgIII_EasyFitness_RoccaFederico.Models;
 @using ProgIII_EasyFitness_RoccaFederico.Service;
+@using System.Runtime.CompilerServices;
+
+@{
+    Layout = "~/Views/Shared/_LayoutAlumno.cshtml";
+}
 
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Mis datos</h2>
-
 @{
     try
     {
         // Obtengo el mail del alumno cargado en la sessión, para traer los datos desde la DDBB
-        string usrMail = Session["usrMail" + Session.SessionID].ToString(); 
+        string usrMail = Session["usrMail" + Session.SessionID].ToString();
 
         PersonaModel per = new PersonaModel();
         PersonaService sPers = new PersonaService();
@@ -21,101 +24,104 @@
         AlumnoService aluService = new AlumnoService();
         alu = aluService.getAlumnoByUsrMail(usrMail);
 
-        //"select * from Usuarios inner join Alumnos on Alumnos.id = Usuarios.id where Usuarios.mail = 2"
-
-    <div class="container">
-        @{
-            <hr />
-            // Datos de la persona
-
-            <div class="row">
-                <div class="col-md-1"></div>
-                <div class="col-md-3">Nombre:</div>
-                <div class="col-md-5">@per.nombre</div>
-            </div>
-            <div class="row">
-                <div class="col-md-1"></div>
-                <div class="col-md-3">Apellido:</div>
-                <div class="col-md-5">@per.apellido</div>
-            </div>
-            <div class="row">
-                <div class="col-md-1"></div>
-                <div class="col-md-3">D.N.I.:</div>
-                <div class="col-md-5">@per.dni</div>
-            </div>
-            <div class="row">
-                <div class="col-md-1"></div>
-                <div class="col-md-3">Fecha de nacimiento:</div>
-                <div class="col-md-5">@per.fechaNacimiento.ToString("dd/MM/yyyy")</div>
-            </div>
-            <div class="row">
-                <div class="col-md-1"></div>
-                <div class="col-md-3">E-Mail:</div>
-                <div class="col-md-5">@per.user.mail</div>
-            </div>
-            <div class="row">
-                <div class="col-md-1"></div>
-                <div class="col-md-3">Edad:</div>
-                <div class="col-md-5">@per.edad</div>
-            </div>
-
-
-            <hr />
-            //Datos del alumno
-            if (alu.entrenamientos != null && alu.entrenamientos.Count > 0)
-            {
+        <div class="container">
+            @{
+                <hr />
+                // Datos de la persona
                 <div class="row">
                     <div class="col-md-1"></div>
-                    <div class="col-md-3">Entrenamientos:</div>
+                    <div class="col-md-3"><h2>Mis datos</h2></div>
                     <div class="col-md-5"></div>
                 </div>
-                foreach (EntrenamientoModel entrenamiento in alu.entrenamientos)
+
+                <div class="row">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-3">Nombre:</div>
+                    <div class="col-md-5">@per.nombre</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-3">Apellido:</div>
+                    <div class="col-md-5">@per.apellido</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-3">D.N.I.:</div>
+                    <div class="col-md-5">@per.dni</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-3">Fecha de nacimiento:</div>
+                    <div class="col-md-5">@per.fechaNacimiento.ToString("dd/MM/yyyy")</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-3">E-Mail:</div>
+                    <div class="col-md-5">@per.user.mail</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-3">Edad:</div>
+                    <div class="col-md-5">@per.edad</div>
+                </div>
+
+
+                <hr />
+                //Datos del alumno
+                if (alu.entrenamientos != null && alu.entrenamientos.Count > 0)
                 {
                     <div class="row">
                         <div class="col-md-1"></div>
-                        <div class="col-md-3">@entrenamiento.nombre</div>
-                        <div class="col-md-5">@entrenamiento.descripcion</div>
+                        <div class="col-md-3"><h2>Entrenamientos</h2></div>
+                        <div class="col-md-5"></div>
                     </div>
+                    foreach (EntrenamientoModel entrenamiento in alu.entrenamientos)
+                    {
+                        <div class="row">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-3">@entrenamiento.nombre</div>
+                            <div class="col-md-5">@entrenamiento.descripcion</div>
+                        </div>
+                    }
                 }
-            }
-            else
-            {
-                <div class="row">
-                    <div class="col-md-1"></div>
-                    <div class="col-md-3">Aún no tenés entrenamientos asignados</div>
-                </div>
-            }
-
-            if (alu.teams != null && alu.teams.Count > 0)
-            {
-                <div class="row">
-                    <div class="col-md-1"></div>
-                    <div class="col-md-3">Teams:</div>
-                    <div class="col-md-5"></div>
-                </div>
-                foreach (TeamModel team in alu.teams)
+                else
                 {
                     <div class="row">
                         <div class="col-md-1"></div>
-                        <div class="col-md-3">@team.nombre</div>
-                        <div class="col-md-5">@team.descripcion</div>
+                        <div class="col-md-3">Aún no tenés entrenamientos asignados</div>
                     </div>
                 }
+                <hr />
+                if (alu.teams != null && alu.teams.Count > 0)
+                {
+                    <div class="row">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-3"><h2>Teams</h2></div>
+                        <div class="col-md-5"></div>
+                    </div>
+                    foreach (TeamModel team in alu.teams)
+                    {
+                        <div class="row">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-3">@team.nombre</div>
+                            <div class="col-md-5">@team.descripcion</div>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <div class="row">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-3">Aún no tenés teams asignados</div>
+                    </div>
+                }
+                <hr />
             }
-            else
-            {
-                <div class="row">
-                    <div class="col-md-1"></div>
-                    <div class="col-md-3">Aún no tenés teams asignados</div>
-                </div>
-            }
-            <hr />
-        }
 
 
 
 
-    </div>
+        </div>
 
     }
     catch (Exception ex)

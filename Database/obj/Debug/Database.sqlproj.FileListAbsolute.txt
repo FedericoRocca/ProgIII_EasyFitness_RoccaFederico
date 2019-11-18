@@ -11,7 +11,6 @@ C:\Users\frocc\Desktop\Repos\ProgIII_EasyFitness_RoccaFederico\Database\obj\Debu
 C:\Users\frocc\Desktop\Repos\TPC_RoccaFederico\Database\bin\Debug\Database.dacpac
 C:\Users\frocc\Desktop\Repos\TPC_RoccaFederico\Database\bin\Debug\Database.dll
 C:\Users\frocc\Desktop\Repos\TPC_RoccaFederico\Database\bin\Debug\Database.pdb
-C:\Users\frocc\Desktop\Repos\TPC_RoccaFederico\Database\obj\Debug\Database.sqlprojAssemblyReference.cache
 C:\Users\frocc\Desktop\Repos\TPC_RoccaFederico\Database\obj\Debug\Model.xml
 C:\Users\frocc\Desktop\Repos\TPC_RoccaFederico\Database\obj\Debug\refactor.xml
 C:\Users\frocc\Desktop\Repos\TPC_RoccaFederico\Database\obj\Debug\postdeploy.sql
