@@ -127,7 +127,6 @@
     <Compile Include="Controllers\AlumnoDatosController.cs" />
     <Compile Include="Controllers\AlumnoEntrenamientoController.cs" />
     <Compile Include="Controllers\AlumnoMainController.cs" />
-    <Compile Include="Controllers\EjercicioController.cs" />
     <Compile Include="Controllers\EjerciciosController.cs" />
     <Compile Include="Controllers\EntrenadorMainController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
@@ -179,7 +178,6 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Ejercicio\Lista.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -212,6 +210,7 @@
     <Content Include="Views\EntrenadorMain\Index.cshtml" />
     <Content Include="Views\Ejercicios\Create.cshtml" />
     <Content Include="Views\Ejercicios\Details.cshtml" />
+    <Content Include="Views\Ejercicios\DetailsBySearch.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataGateway\DataGateway.csproj">

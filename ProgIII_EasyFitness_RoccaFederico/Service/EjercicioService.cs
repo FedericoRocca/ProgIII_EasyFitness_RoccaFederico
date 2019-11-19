@@ -81,5 +81,41 @@ namespace ProgIII_EasyFitness_RoccaFederico.Service
             }
         }
 
+        public List<EjercicioModel> getEjerciciosBySearchFromPersonaId(long _id, string _term)
+        {
+            try
+            {
+                DDBBGateway data = new DDBBGateway();
+                data.prepareQuery(
+                    "select Ejercicios.id, Ejercicios.nombre, Ejercicios.tipo, Ejercicios.urlEjemplo, Ejercicios.tiempo, Ejercicios.repeticiones, " +
+                    "Ejercicios.comentarios, Ejercicios.intensidad " +
+                    "from Entrenadores " +
+                    "inner join Ejercicios on Ejercicios.id = Entrenadores.entrenamientoId " +
+                    "where Ejercicios.nombre like LOWER('%" + _term + "%') and Entrenadores.personaId = '" + _id + "'");
+                data.sendQuery();
+                List<EjercicioModel> aux = new List<EjercicioModel>();
+
+                while (data.getReader().Read())
+                {
+                    aux.Add(new EjercicioModel(
+                        (long)data.getReader()["id"],
+                        data.getReader()["nombre"].ToString(),
+                        data.getReader()["tipo"].ToString(),
+                        data.getReader()["urlEjemplo"].ToString(),
+                        (int)data.getReader()["tiempo"],
+                        (int)data.getReader()["repeticiones"],
+                        data.getReader()["comentarios"].ToString(),
+                        (short)data.getReader()["intensidad"])); ;
+                }
+
+                return aux;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
     }
 }

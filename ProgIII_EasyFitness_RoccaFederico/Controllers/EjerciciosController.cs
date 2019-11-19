@@ -37,6 +37,28 @@ namespace ProgIII_EasyFitness_RoccaFederico.Controllers
             return View(lEjercicios);
         }
 
+        public ActionResult DetailsBySearch()
+        {
+            List<EjercicioModel> lEjercicios = new List<EjercicioModel>();
+            try
+            {
+                string toSearch = TempData["ejercicioToSearch"].ToString();
+                PersonaModel pModel = new PersonaModel();
+                pModel = (PersonaModel)Session["persona" + Session.SessionID];
+
+                EjercicioService eServ = new EjercicioService();
+                lEjercicios = eServ.getEjerciciosBySearchFromPersonaId(pModel.id, toSearch);
+
+                return View(lEjercicios);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+
+            return View(lEjercicios);
+        }
         // GET: Ejercicios/Create
         public ActionResult Create()
         {
@@ -49,9 +71,9 @@ namespace ProgIII_EasyFitness_RoccaFederico.Controllers
         {
             try
             {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
+                string asqwedcwevfd = collection["nombre"];
+                TempData["ejercicioToSearch"] = collection["nombre"];
+                return RedirectToAction("DetailsBySearch");
             }
             catch
             {
