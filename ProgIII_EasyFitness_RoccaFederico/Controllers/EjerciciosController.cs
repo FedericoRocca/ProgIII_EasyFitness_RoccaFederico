@@ -56,8 +56,6 @@ namespace ProgIII_EasyFitness_RoccaFederico.Controllers
 
                 throw ex;
             }
-
-            return View(lEjercicios);
         }
         // GET: Ejercicios/Create
         public ActionResult Create()
@@ -71,7 +69,6 @@ namespace ProgIII_EasyFitness_RoccaFederico.Controllers
         {
             try
             {
-                string asqwedcwevfd = collection["nombre"];
                 TempData["ejercicioToSearch"] = collection["nombre"];
                 return RedirectToAction("DetailsBySearch");
             }
@@ -82,9 +79,20 @@ namespace ProgIII_EasyFitness_RoccaFederico.Controllers
         }
 
         // GET: Ejercicios/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(EjercicioModel ejercicio)
         {
-            return View();
+            try
+            {
+                EjercicioService eServ = new EjercicioService();
+                ejercicio = eServ.getEjercicioByID(ejercicio.id);
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            return View(ejercicio);
         }
 
         // POST: Ejercicios/Edit/5
@@ -93,9 +101,43 @@ namespace ProgIII_EasyFitness_RoccaFederico.Controllers
         {
             try
             {
-                // TODO: Add update logic here
+                EjercicioService eServ = new EjercicioService();
+                EjercicioModel eModel = new EjercicioModel();
 
-                return RedirectToAction("Index");
+                eModel.id = long.Parse(collection["id"]);
+                eModel.nombre = collection["nombre"];
+                eModel.tipo = collection["tipo"];
+                eModel.urlEjemplo = collection["urlEjemplo"];
+                if(collection["tiempo"] == null)
+                {
+                    eModel.tiempo = null;
+                }
+                else
+                {
+                    eModel.tiempo = int.Parse(collection["tiempo"]);
+                }
+                
+                if(collection["repeticiones"] == null)
+                {
+                    eModel.repeticiones = null;
+                }
+                else
+                {
+                    eModel.repeticiones = int.Parse(collection["repeticiones"]);
+                }
+                eModel.comentarios = collection["comentarios"];
+                eModel.intensidad = short.Parse(collection["intensidad"]);
+
+                if( eServ.updateEjercicioByID(eModel) == true )
+                {
+                    return RedirectToAction("updatedOK");
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Error");
+                }
+
+                
             }
             catch
             {
@@ -106,6 +148,17 @@ namespace ProgIII_EasyFitness_RoccaFederico.Controllers
         // GET: Ejercicios/Delete/5
         public ActionResult Delete(int id)
         {
+            try
+            {
+                EjercicioModel eModel = new EjercicioModel();
+                EjercicioService eServ = new EjercicioService();
+                eModel = eServ.getEjercicioByID(id);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
             return View();
         }
 
@@ -115,14 +168,23 @@ namespace ProgIII_EasyFitness_RoccaFederico.Controllers
         {
             try
             {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
+                EjercicioService eServ = new EjercicioService();
+                if (eServ.deleteEjercicioByID(id) == true)
+                {
+                    RedirectToAction("deletedOK");
+                }
             }
-            catch
+            catch (Exception ex)
             {
-                return View();
+
+                throw ex;
             }
+            return View();
+        }
+
+        public ActionResult updatedOK()
+        {
+            return View();
         }
     }
 }

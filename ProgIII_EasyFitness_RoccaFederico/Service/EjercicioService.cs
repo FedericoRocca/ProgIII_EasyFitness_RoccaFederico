@@ -45,6 +45,41 @@ namespace ProgIII_EasyFitness_RoccaFederico.Service
             }
         }
 
+        public EjercicioModel getEjercicioByID(long _id)
+        {
+            try
+            {
+                DDBBGateway ddbbdata = new DDBBGateway();
+                ddbbdata.prepareQuery(
+                    "select ID, Nombre, Tipo, UrlEjemplo, Tiempo, Repeticiones, Comentarios, Intensidad " +
+                    "from Ejercicios " +
+                    "where ID = '" + _id + "'");
+                ddbbdata.sendQuery();
+                ddbbdata.getReader().Read();
+                EjercicioModel tmp = new EjercicioModel();
+                tmp.id = (Int64)ddbbdata.getReader()["ID"];
+                tmp.nombre = ddbbdata.getReader()["Nombre"].ToString();
+                tmp.tipo = ddbbdata.getReader()["Tipo"].ToString();
+                tmp.urlEjemplo = ddbbdata.getReader()["UrlEjemplo"].ToString();
+                if (!Convert.IsDBNull(ddbbdata.getReader()["Tiempo"]))
+                {
+                    tmp.tiempo = (int)ddbbdata.getReader()["Tiempo"];
+                }
+                if (!Convert.IsDBNull(ddbbdata.getReader()["Repeticiones"]))
+                {
+                    tmp.repeticiones = (int)ddbbdata.getReader()["Repeticiones"];
+                }
+                tmp.comentarios = ddbbdata.getReader()["Comentarios"].ToString();
+                tmp.intensidad = (short)ddbbdata.getReader()["Intensidad"];
+
+                return tmp;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public List<EjercicioModel> getEjerciciosByPersonaID(Int64 _personaID)
         {
             try
@@ -113,6 +148,50 @@ namespace ProgIII_EasyFitness_RoccaFederico.Service
             catch (Exception ex)
             {
 
+                throw ex;
+            }
+        }
+
+        public bool updateEjercicioByID(EjercicioModel _ejercicio)
+        {
+            try
+            {
+                DDBBGateway data = new DDBBGateway();
+                data.prepareQuery(
+                    "update Ejercicios " +
+                    "set nombre = '" + _ejercicio.nombre + "', tipo = '" + _ejercicio.tipo + "', " +
+                    "urlEjemplo = '" + _ejercicio.urlEjemplo + "', tiempo = '" + _ejercicio.tiempo + "', " +
+                    "repeticiones = '" + _ejercicio.repeticiones + "', comentarios = '" + _ejercicio.comentarios + "', intensidad = '" + _ejercicio.intensidad + "' " +
+                    "where id = '" + _ejercicio.id + "'");
+                data.sendStatement();
+
+                if (data.getAffectedRows() <= 0)
+                {
+                    return false;
+                }
+                else return true;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public bool deleteEjercicioByID(long _id)
+        {
+            try
+            {
+                DDBBGateway ddbbdata = new DDBBGateway();
+                ddbbdata.prepareQuery("delete from Ejercicios where id = '" + _id + "';");
+                ddbbdata.sendStatement();
+                if (ddbbdata.getAffectedRows() <= 0)
+                {
+                    return false;
+                }
+                else return true;
+            }
+            catch (Exception ex)
+            {
                 throw ex;
             }
         }

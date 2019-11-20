@@ -211,6 +211,10 @@
     <Content Include="Views\Ejercicios\Create.cshtml" />
     <Content Include="Views\Ejercicios\Details.cshtml" />
     <Content Include="Views\Ejercicios\DetailsBySearch.cshtml" />
+    <Content Include="Views\Ejercicios\Edit.cshtml" />
+    <Content Include="Views\Ejercicios\updatedOK.cshtml" />
+    <Content Include="Views\Ejercicios\Delete.cshtml" />
+    <Content Include="Views\Ejercicios\deletedOK.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataGateway\DataGateway.csproj">
