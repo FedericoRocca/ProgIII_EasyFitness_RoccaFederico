@@ -5,25 +5,19 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Oops</h2>
-@{
-    string exceptionMessage = Session["exceptionMessage" + Session.SessionID].ToString();
-    string exceptionSource = Session["exceptionSource" + Session.SessionID].ToString();
-    string exceptionStackTrace = Session["exceptionStackTrace" + Session.SessionID].ToString();
-    string exceptionTargetSite = Session["exceptionTargetSite" + Session.SessionID].ToString();
-    DateTime timeStamp = DateTime.Now;
-
-    string FullException = "Cuando: " + timeStamp.ToString() + "<br />" +
-        "Mensaje: " + exceptionMessage + "<br />" +
-        "Source: " + exceptionSource + "<br />" +
-        "StackTrace: " + exceptionStackTrace + "<br />" +
-        "TargetSite: " + exceptionTargetSite;
-
-    MailSender mail = new MailSender("easyfitnessrecover@gmail.com", "453by6g3gy56gy534");
-    mail.sendMail(
-            "EasyFitnessRecover@gmail.com",
-            "frocca17@gmail.com",
-            "Excepción encontrada en EasyFitness",
-            FullException
-            );
-}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Error</title>
+</head>
+<body>
+    <hgroup>
+        <h1>Oops...</h1>
+        <h2>Se produjo un error al procesar la solicitud.</h2>
+        <h3>Seguramente es culpa del programador...</h3>
+        @Html.ActionLink("Volver al menú principal", "Index", "Home", null, new { @class = "btn btn-dark" })
+    </hgroup>
+</body>
+</html>

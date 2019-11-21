@@ -5,10 +5,8 @@
     Layout = "~/Views/Shared/_LayoutEntrenador.cshtml";
 }
 
-<h2>DetailsBySearch</h2>
-
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Nuevo ejercicio", "Create")
 </p>
 <table class="table">
     <tr>
@@ -60,9 +58,8 @@
             @Html.DisplayFor(modelItem => item.intensidad)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+            @Html.ActionLink("Editar", "Edit", new { id=item.id }, new { @class = "btn btn-dark" }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id=item.id }, new { @class = "btn btn-danger" })
         </td>
     </tr>
 }
