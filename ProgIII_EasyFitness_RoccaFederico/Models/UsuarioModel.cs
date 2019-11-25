@@ -5,10 +5,13 @@ using System.Web;
 
 namespace ProgIII_EasyFitness_RoccaFederico.Models
 {
-    public class UsuarioModel
+    public class usuarioModel
     {
-        public Int64 id { get; set; }
+        public long id { get; set; }
+        public long idPersona { get; set; }
         public string mail { get; set; }
         public string password { get; set; }
+        public string profile { get; set; }
+        public usuarioModel(){}
     }
 }

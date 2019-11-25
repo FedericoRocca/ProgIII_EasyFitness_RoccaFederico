@@ -4,11 +4,11 @@
 -- GO
 -- 
 -- -- Dropeo la base de datos solo si existe
--- DROP DATABASE IF EXISTS EasyFitness_DB;
+-- DROP DATABASE IF EXISTS EasyFitness
 -- GO
 -- 
 -- -- Creo la base de datos y me conecto
--- CREATE DATABASE EasyFitness_DB
+-- CREATE DATABASE EasyFitness
 -- GO
 -- 
 -- USE EasyFitness
@@ -40,7 +40,7 @@ CREATE TABLE Personas
 	nombre VARCHAR(100) NOT NULL,
 	apellido VARCHAR(100) NOT NULL,
 	dni INT NOT NULL CHECK( DNI > 0 ),
-	fechaNacimiento DATETIME NOT NULL,
+	fechaNacimiento DATETIME2 NOT NULL,
 	UNIQUE(dni)
 )
 
@@ -51,6 +51,7 @@ CREATE TABLE Usuarios
 	idPersona BIGINT NOT NULL FOREIGN KEY REFERENCES Personas(id),
 	mail VARCHAR(100) NOT NULL,
 	password VARCHAR(100) NOT NULL,
+	profile VARCHAR(25) NOT NULL,
 	UNIQUE (id, mail)
 )
 
@@ -105,6 +106,7 @@ CREATE TABLE Ejercicios
 	intensidad SMALLINT NOT NULL,
 	idEntrenador BIGINT NOT NULL FOREIGN KEY REFERENCES Entrenadores(id),
 	idRutina BIGINT NOT NULL FOREIGN KEY REFERENCES Rutinas(id),
+	UNIQUE(nombre, tipo, urlEjemplo, tiempo, repeticiones, comentarios, intensidad, idEntrenador, idRutina)
 )
 
 -- Creo la tabla de Teams
@@ -116,5 +118,5 @@ CREATE TABLE Teams
 	idEntrenador BIGINT NOT NULL FOREIGN KEY REFERENCES Entrenadores(id),
 	idEntrenamiento BIGINT NOT NULL FOREIGN KEY REFERENCES Entrenamientos(id),
 	idAlumno BIGINT NOT NULL FOREIGN KEY REFERENCES Alumnos(id),
-	UNIQUE(idEntrenador, idEntrenamiento, idAlumno)
+	UNIQUE(idEntrenador, idEntrenamiento, idAlumno, nombre, descripcion)
 )

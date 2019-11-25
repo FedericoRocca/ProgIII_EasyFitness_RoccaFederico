@@ -14,11 +14,20 @@
 </head>
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark navbar-fixed-top">
-        <span class="navbar-brand mb-0 h1">EasyFitness</span>
-        <div class="collapse navbar-collapse" id="navbarNav">
+    @*<nav class="navbar navbar-expand-lg navbar-dark bg-dark navbar-fixed-top">
+            <span class="navbar-brand mb-0 h1">EasyFitness</span>
+            <div class="collapse navbar-collapse" id="navbarNav">
+            </div>
+        </nav>*@
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li>@Html.ActionLink("EasyFitness", "Index", "login")</li>
+            </ul>
+            @*@Html.Partial("_LoginPartial")*@
         </div>
-    </nav>
+    </div>
 
     <div class="container body-content">
 
