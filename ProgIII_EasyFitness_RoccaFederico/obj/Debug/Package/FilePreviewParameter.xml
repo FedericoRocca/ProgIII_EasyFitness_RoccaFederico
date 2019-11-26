@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="IIS Web Application Name" description="" value="EasyFitness" tags="IisApp">
+    <parameterEntry kind="ProviderPath" scope="IisApp" match="^C:\\Users\\frocc\\Desktop\\Repos\\TPC_RoccaFederico\\ProgIII_EasyFitness_RoccaFederico\\obj\\Debug\\Package\\PackageTmp$" />
+    <parameterEntry kind="ProviderPath" scope="setAcl" match="^C:\\Users\\frocc\\Desktop\\Repos\\TPC_RoccaFederico\\ProgIII_EasyFitness_RoccaFederico\\obj\\Debug\\Package\\PackageTmp$" />
+  </parameter>
+</parameters>

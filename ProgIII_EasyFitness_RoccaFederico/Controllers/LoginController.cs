@@ -47,7 +47,8 @@ namespace ProgIII_EasyFitness_RoccaFederico.Controllers
                     switch (persona.user.profile)
                     {
                         case "Alumno":
-                            break;
+                            Session["personaLogedIn" + Session.SessionID] = persona;
+                            return RedirectToAction("Index", "Alumno");
 
                         case "Entrenador":
                             break;
