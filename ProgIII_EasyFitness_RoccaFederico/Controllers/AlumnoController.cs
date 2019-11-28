@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using ProgIII_EasyFitness_RoccaFederico.Models;
+using ProgIII_EasyFitness_RoccaFederico.Service;
+using DataGateway;
+
 
 namespace ProgIII_EasyFitness_RoccaFederico.Controllers
 {
@@ -14,9 +18,39 @@ namespace ProgIII_EasyFitness_RoccaFederico.Controllers
             return View();
         }
 
-        public ActionResult Datos()
+        public ActionResult Modificacion()
         {
             return View();
+        }
+
+        public ActionResult Datos()
+        {
+            personaModel persona;
+            persona = (personaModel)Session["personaLogedIn" + Session.SessionID];
+            return View(persona);
+        }
+
+        [HttpPost]
+        public ActionResult Datos(FormCollection collection)
+        {
+            try
+            {
+                personaModel persona = new personaModel();
+                persona = (personaModel)Session["personaLogedIn" + Session.SessionID];
+                persona.nombre = Request.Form["nombre"];
+                persona.apellido = Request.Form["apellido"];
+                persona.dni = int.Parse(Request.Form["dni"]);
+                persona.fechaNacimiento = DateTime.Parse(Request.Form["fechaNacimiento"]);
+                persona.user.mail = Request.Form["user.mail"];
+                persona.user.password = Request.Form["user.password"];
+                persona.user.profile = Request.Form["user.profile"];
+
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
         }
 
         // GET: Alumno/Details/5

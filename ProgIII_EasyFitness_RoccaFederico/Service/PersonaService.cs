@@ -98,7 +98,6 @@ namespace ProgIII_EasyFitness_RoccaFederico.Service
                 throw ex;
             }
         }
-
         public void newPersona(personaModel persona)
         {
             try
@@ -125,7 +124,6 @@ namespace ProgIII_EasyFitness_RoccaFederico.Service
                 throw ex;
             }
         }
-
         public long getLastPersonaID()
         {
             try
@@ -138,6 +136,19 @@ namespace ProgIII_EasyFitness_RoccaFederico.Service
                 data.sendQuery();
                 data.getReader().Read();
                 return (long)data.getReader()["id"];
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public void updatePersonaById(personaModel _persona)
+        {
+            try
+            {
+                DDBBGateway data = new DDBBGateway();
+                data.prepareQuery("");
+
             }
             catch (Exception ex)
             {
