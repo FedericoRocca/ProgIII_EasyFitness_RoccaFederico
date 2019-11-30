@@ -127,7 +127,7 @@ namespace ProgIII_EasyFitness_RoccaFederico.Controllers
                 persona.nombre = Request.Form["nombre"];
                 persona.apellido = Request.Form["apellido"];
                 persona.dni = int.Parse(Request.Form["dni"]);
-                persona.fechaNacimiento = DateTime.Parse(Request.Form["fechaNacimiento"]);
+                persona.fechaNacimiento = DateTime.ParseExact(Request.Form["fechaNacimiento"], "dd/MM/yyyy", null);
                 persona.user.password = Request.Form["user.password"];
                 persona.user.mail = Request.Form["user.mail"];
                 persona.user.profile = Request.Form["user.profile"];
@@ -147,8 +147,9 @@ namespace ProgIII_EasyFitness_RoccaFederico.Controllers
                 }
                 
             }
-            catch
+            catch(Exception ex)
             {
+                ex = null;
                 return View();
             }
         }

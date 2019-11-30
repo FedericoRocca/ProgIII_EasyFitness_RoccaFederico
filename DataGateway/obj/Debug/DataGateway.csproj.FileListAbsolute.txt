@@ -3,3 +3,8 @@ C:\Users\frocc\Desktop\Repos\ProgIII_EasyFitness_RoccaFederico\DataGateway\bin\D
 C:\Users\frocc\Desktop\Repos\ProgIII_EasyFitness_RoccaFederico\DataGateway\obj\Debug\DataGateway.csprojAssemblyReference.cache
 C:\Users\frocc\Desktop\Repos\ProgIII_EasyFitness_RoccaFederico\DataGateway\obj\Debug\DataGateway.dll
 C:\Users\frocc\Desktop\Repos\ProgIII_EasyFitness_RoccaFederico\DataGateway\obj\Debug\DataGateway.pdb
+C:\Users\frocc\Desktop\Repos\TPC_RoccaFederico\DataGateway\bin\Debug\DataGateway.dll
+C:\Users\frocc\Desktop\Repos\TPC_RoccaFederico\DataGateway\bin\Debug\DataGateway.pdb
+C:\Users\frocc\Desktop\Repos\TPC_RoccaFederico\DataGateway\obj\Debug\DataGateway.csprojAssemblyReference.cache
+C:\Users\frocc\Desktop\Repos\TPC_RoccaFederico\DataGateway\obj\Debug\DataGateway.dll
+C:\Users\frocc\Desktop\Repos\TPC_RoccaFederico\DataGateway\obj\Debug\DataGateway.pdb
