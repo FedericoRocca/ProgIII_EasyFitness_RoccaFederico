@@ -37,15 +37,26 @@ namespace ProgIII_EasyFitness_RoccaFederico.Controllers
             {
                 personaModel persona = new personaModel();
                 persona = (personaModel)Session["personaLogedIn" + Session.SessionID];
+
+                int oldDNI = persona.dni;
+                long oldId = persona.id;
                 persona.nombre = Request.Form["nombre"];
                 persona.apellido = Request.Form["apellido"];
                 persona.dni = int.Parse(Request.Form["dni"]);
-                persona.fechaNacimiento = DateTime.Parse(Request.Form["fechaNacimiento"]);
+                persona.fechaNacimiento = DateTime.ParseExact(Request.Form["fechaNacimiento"], "dd/MM/yyyy", null);
                 persona.user.mail = Request.Form["user.mail"];
                 persona.user.password = Request.Form["user.password"];
                 persona.user.profile = Request.Form["user.profile"];
 
-                return RedirectToAction("Index");
+                personaService pServ = new personaService();
+                if(pServ.updatePersonaByIdAndDNI(persona, oldDNI, oldId) == true)
+                {
+                    return RedirectToAction("ModificacionOK");
+                }
+                else
+                {
+                    return View();
+                }
             }
             catch
             {
@@ -124,5 +135,11 @@ namespace ProgIII_EasyFitness_RoccaFederico.Controllers
                 return View();
             }
         }
+
+        public ActionResult ModificacionOK()
+        {
+            return View();
+        }
+
     }
 }

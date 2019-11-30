@@ -229,6 +229,7 @@
     <Content Include="Views\Shared\_LayoutAlumno.cshtml" />
     <Content Include="Views\Alumno\Index.cshtml" />
     <Content Include="Views\Alumno\Datos.cshtml" />
+    <Content Include="Views\Alumno\ModificacionOK.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

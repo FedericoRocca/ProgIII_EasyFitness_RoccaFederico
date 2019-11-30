@@ -142,13 +142,22 @@ namespace ProgIII_EasyFitness_RoccaFederico.Service
                 throw ex;
             }
         }
-        public void updatePersonaById(personaModel _persona)
+        public bool updatePersonaByIdAndDNI(personaModel _persona, int _oldDNI, long _oldID)
         {
             try
             {
                 DDBBGateway data = new DDBBGateway();
-                data.prepareQuery("");
-
+                data.prepareQuery("" +
+                    "update Personas " +
+                    "set nombre = '" + _persona.nombre + "', apellido = '" + _persona.apellido + "', dni = '" + _persona.dni + "'" +
+                    ", fechaNacimiento = '" + _persona.fechaNacimiento + "' " +
+                    "where dni = '" + _oldDNI + "' and id = '" + _oldID + "';");
+                data.sendStatement();
+                if (data.getAffectedRows() <= 0)
+                {
+                    return false;
+                }
+                else return true;
             }
             catch (Exception ex)
             {
