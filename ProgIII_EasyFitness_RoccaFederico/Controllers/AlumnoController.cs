@@ -49,7 +49,8 @@ namespace ProgIII_EasyFitness_RoccaFederico.Controllers
                 persona.user.profile = Request.Form["user.profile"];
 
                 personaService pServ = new personaService();
-                if(pServ.updatePersonaByIdAndDNI(persona, oldDNI, oldId) == true)
+                userService uServ = new userService();
+                if((pServ.updatePersonaByIdAndDNI(persona, oldDNI, oldId) == true) && (uServ.updateUsuarioByID(persona.user)))
                 {
                     return RedirectToAction("ModificacionOK");
                 }

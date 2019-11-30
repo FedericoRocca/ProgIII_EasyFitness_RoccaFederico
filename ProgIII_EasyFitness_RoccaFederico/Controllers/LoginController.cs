@@ -44,14 +44,14 @@ namespace ProgIII_EasyFitness_RoccaFederico.Controllers
                 }
                 else
                 {
+                    Session["personaLogedIn" + Session.SessionID] = persona;
                     switch (persona.user.profile)
                     {
                         case "Alumno":
-                            Session["personaLogedIn" + Session.SessionID] = persona;
                             return RedirectToAction("Index", "Alumno");
 
                         case "Entrenador":
-                            break;
+                            return RedirectToAction("Index", "Entrenador");
 
                         default:
                             break;

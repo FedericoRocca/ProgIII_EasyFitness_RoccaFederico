@@ -72,14 +72,21 @@
         <div class="form-group">
             @Html.LabelFor(model => model.fechaNacimiento, "Fecha de nacimiento", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.fechaNacimiento, new { htmlAttributes = new { @class = "form-control", @type = "text", 
-               @placeholder = "Fecha de nacimiento", required = "required", id="datepicker", autocomplete = "off" } })
+                @Html.EditorFor(model => model.fechaNacimiento, new
+                {
+                    htmlAttributes = new
+                    {
+                        @class = "form-control",
+                        @type = "text",
+               @placeholder = "Fecha de nacimiento",
+                        required = "required",
+                        id = "datepicker",
+                        autocomplete = "off"
+                    }
+                })
                 @Html.ValidationMessageFor(model => model.fechaNacimiento, "", new { @class = "text-danger" })
             </div>
         </div>
-
-
-
         <script>
             $("#datepicker").datepicker({
                 changeMonth: true,
@@ -98,7 +105,7 @@
             {
                 new SelectListItem {Text = "Alumno", Value = "Alumno"},
                 new SelectListItem {Text = "Entrenador", Value = "Entrenador"},
-                                                                                }, "Value", "Text");
+                                                                                    }, "Value", "Text");
         }
         <div class="form-group">
             @Html.LabelFor(model => model.user.profile, "Yo soy", htmlAttributes: new { @class = "control-label col-md-2" })

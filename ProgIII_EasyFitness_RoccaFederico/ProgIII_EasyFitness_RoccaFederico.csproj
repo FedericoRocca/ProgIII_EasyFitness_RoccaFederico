@@ -125,6 +125,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AlumnoController.cs" />
+    <Compile Include="Controllers\EntrenadorController.cs" />
     <Compile Include="Controllers\loginController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -230,6 +231,10 @@
     <Content Include="Views\Alumno\Index.cshtml" />
     <Content Include="Views\Alumno\Datos.cshtml" />
     <Content Include="Views\Alumno\ModificacionOK.cshtml" />
+    <Content Include="Views\Shared\_LayoutEntrenador.cshtml" />
+    <Content Include="Views\Entrenador\Index.cshtml" />
+    <Content Include="Views\Entrenador\Datos.cshtml" />
+    <Content Include="Views\Entrenador\ModificacionOK.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -25,5 +25,27 @@ namespace ProgIII_EasyFitness_RoccaFederico.Service
                 throw ex;
             }
         }
+
+        public bool updateUsuarioByID(usuarioModel _user)
+        {
+            try
+            {
+                DDBBGateway data = new DDBBGateway();
+                data.prepareQuery(
+                    "update Usuarios " +
+                    "set mail = '" + _user.mail + "', password = '" + _user.password + "', profile = '" + _user.profile + "' " +
+                    "where id = '" + _user.id + "'");
+                data.sendStatement();
+                if (data.getAffectedRows() <= 0)
+                {
+                    return false;
+                }
+                else return true;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }
