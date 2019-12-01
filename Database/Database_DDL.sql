@@ -18,8 +18,8 @@ DROP TABLE IF EXISTS Teams
 DROP TABLE IF EXISTS Ejercicios
 DROP TABLE IF EXISTS Rutinas
 DROP TABLE IF EXISTS Entrenamientos
-DROP TABLE IF EXISTS Alumnos
-DROP TABLE IF EXISTS Entrenadores
+-- DROP TABLE IF EXISTS Alumnos
+-- DROP TABLE IF EXISTS Entrenadores
 DROP TABLE IF EXISTS Usuarios
 DROP TABLE IF EXISTS Personas
 
@@ -56,41 +56,40 @@ CREATE TABLE Usuarios
 )
 
 -- Creo la tabla Alumnos
-CREATE TABLE Alumnos
-(
-	id BIGINT NOT NULL IDENTITY(1,1) PRIMARY KEY,
-	personaId BIGINT NOT NULL FOREIGN KEY REFERENCES Personas(id),
-	UNIQUE(personaId)
-)
+-- CREATE TABLE Alumnos
+-- (
+-- 	id BIGINT NOT NULL IDENTITY(1,1) PRIMARY KEY,
+-- 	personaId BIGINT NOT NULL FOREIGN KEY REFERENCES Personas(id),
+-- 	UNIQUE(personaId)
+-- )
 
 -- Creo la tabla de Entrenadores
-CREATE TABLE Entrenadores
-(
-	id BIGINT NOT NULL PRIMARY KEY IDENTITY (1,1),
-	personaId BIGINT NOT NULL FOREIGN KEY REFERENCES Personas(id)
-	UNIQUE(personaId)
-)
+-- CREATE TABLE Entrenadores
+-- (
+-- 	id BIGINT NOT NULL PRIMARY KEY IDENTITY (1,1),
+-- 	personaId BIGINT NOT NULL FOREIGN KEY REFERENCES Personas(id)
+-- 	UNIQUE(personaId)
+-- )
 
 -- Creo la tabla de entrenamientos
 CREATE TABLE Entrenamientos
 (
 	id BIGINT NOT NULL PRIMARY KEY IDENTITY (1,1),
-	idEntrenador BIGINT NOT NULL FOREIGN KEY REFERENCES Entrenadores(id),
-	idAlumno BIGINT NOT NULL FOREIGN KEY REFERENCES Alumnos(id),
+	idPersona BIGINT NOT NULL FOREIGN KEY REFERENCES Personas(id),
 	descripcion VARCHAR(100) NOT NULL,
 	nombre VARCHAR(100) NOT NULL,
-	UNIQUE(descripcion, nombre, idEntrenador, idAlumno)
+	UNIQUE(descripcion, nombre, idPersona)
 )
 
 -- Creo la tabla de rutinas
 CREATE TABLE Rutinas
 (
 	id BIGINT NOT NULL IDENTITY (1,1) PRIMARY KEY,
-	idEntrenador BIGINT NOT NULL FOREIGN KEY REFERENCES Entrenadores(id),
+	idPersona BIGINT NOT NULL FOREIGN KEY REFERENCES Personas(id),
 	idEntrenamiento BIGINT NOT NULL FOREIGN KEY REFERENCES Entrenamientos(id),
 	descripcion VARCHAR(100) NOT NULL,
 	nombre VARCHAR(100) NOT NULL,
-	UNIQUE(idEntrenamiento, idEntrenador, descripcion, nombre)
+	UNIQUE(idEntrenamiento, idPersona, descripcion, nombre)
 )
 
 -- Creo la tabla de ejercicios
@@ -104,9 +103,9 @@ CREATE TABLE Ejercicios
 	repeticiones INT NULL,
 	comentarios VARCHAR(100) NOT NULL,
 	intensidad SMALLINT NOT NULL,
-	idEntrenador BIGINT NOT NULL FOREIGN KEY REFERENCES Entrenadores(id),
+	idPersona BIGINT NOT NULL FOREIGN KEY REFERENCES Personas(id),
 	idRutina BIGINT NOT NULL FOREIGN KEY REFERENCES Rutinas(id),
-	UNIQUE(nombre, tipo, urlEjemplo, tiempo, repeticiones, comentarios, intensidad, idEntrenador, idRutina)
+	UNIQUE(nombre, tipo, urlEjemplo, tiempo, repeticiones, comentarios, intensidad, idPersona, idRutina)
 )
 
 -- Creo la tabla de Teams
@@ -115,8 +114,7 @@ CREATE TABLE Teams
 	id BIGINT NOT NULL PRIMARY KEY IDENTITY (1,1),
 	nombre VARCHAR(100) NOT NULL,
 	descripcion VARCHAR(100) NOT NULL,
-	idEntrenador BIGINT NOT NULL FOREIGN KEY REFERENCES Entrenadores(id),
+	idPersona BIGINT NOT NULL FOREIGN KEY REFERENCES Personas(id),
 	idEntrenamiento BIGINT NOT NULL FOREIGN KEY REFERENCES Entrenamientos(id),
-	idAlumno BIGINT NOT NULL FOREIGN KEY REFERENCES Alumnos(id),
-	UNIQUE(idEntrenador, idEntrenamiento, idAlumno, nombre, descripcion)
+	UNIQUE(idPersona, idEntrenamiento, nombre, descripcion)
 )

@@ -125,11 +125,13 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AlumnoController.cs" />
+    <Compile Include="Controllers\EjercicioController.cs" />
     <Compile Include="Controllers\EntrenadorController.cs" />
     <Compile Include="Controllers\loginController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\EjercicioModel.cs" />
     <Compile Include="Models\personaModel.cs" />
     <Compile Include="Models\usuarioModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -235,6 +237,8 @@
     <Content Include="Views\Entrenador\Index.cshtml" />
     <Content Include="Views\Entrenador\Datos.cshtml" />
     <Content Include="Views\Entrenador\ModificacionOK.cshtml" />
+    <Content Include="Views\Ejercicio\Index.cshtml" />
+    <Content Include="Views\Ejercicio\Nuevo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

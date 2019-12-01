@@ -32,7 +32,16 @@
             </ul>
         </div>
     </nav>
-
+    @* Para evitar el back button del browser *@
+    <script type="text/javascript">
+        function DisableBackButton() {
+            window.history.forward();
+        }
+        setTimeout("DisableBackButton()", 0);
+        window.onunload = function () {
+            null
+        };
+    </script>
     <div class="container body-content">
 
         <div class="row">

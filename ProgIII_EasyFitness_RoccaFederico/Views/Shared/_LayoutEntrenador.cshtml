@@ -20,12 +20,15 @@
 <body style="padding-top: 50px">
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-        <a class="navbar-brand" href="#">EasyFitness</a>
+        @Html.ActionLink("EasyFitness", "reLogin", "login", null, new { @class = "nav-link navbar-brand" })
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    @Html.ActionLink("Ejercicios", "Index", "Ejercicio", null, new { @class = "nav-link" })
+                </li>
                 <li class="nav-item">
                     @Html.ActionLink("Mis datos", "Datos", "Entrenador", null, new { @class = "nav-link" })
                 </li>
@@ -33,6 +36,16 @@
         </div>
     </nav>
 
+    @* Para evitar el back button del browser *@
+    <script type="text/javascript">
+        function DisableBackButton() {
+            window.history.forward();
+        }
+        setTimeout("DisableBackButton()", 0);
+        window.onunload = function () {
+            null
+        };
+    </script>
     <div class="container body-content">
 
         <div class="row">

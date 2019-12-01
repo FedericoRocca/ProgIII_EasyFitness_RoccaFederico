@@ -38,7 +38,7 @@ namespace ProgIII_EasyFitness_RoccaFederico.Controllers
                 personaService pServ = new personaService();
                 persona = pServ.getPersonaByMailAndPassword(persona.user.mail, persona.user.password);
 
-                if( persona.id == 0 )
+                if (persona.id == 0)
                 {
                     Session["loginFailed" + Session.SessionID] = "true";
                 }
@@ -133,7 +133,7 @@ namespace ProgIII_EasyFitness_RoccaFederico.Controllers
                 persona.user.profile = Request.Form["user.profile"];
 
                 personaService pServ = new personaService();
-                if(pServ.checkPersonExistence( persona ) == false)
+                if (pServ.checkPersonExistence(persona) == false)
                 {
                     Session["userExists" + Session.SessionID] = null;
                     pServ.newPersona(persona);
@@ -145,11 +145,10 @@ namespace ProgIII_EasyFitness_RoccaFederico.Controllers
                     Session["userExists" + Session.SessionID] = "true";
                     return RedirectToAction("Registry");
                 }
-                
+
             }
-            catch(Exception ex)
+            catch
             {
-                ex = null;
                 return View();
             }
         }
@@ -234,7 +233,7 @@ namespace ProgIII_EasyFitness_RoccaFederico.Controllers
                 persona.user.mail = Request.Form["user.mail"];
                 persona.dni = int.Parse(Request.Form["dni"]);
                 //persona = pServ.
-                if(pServ.checkPersonExistence(persona))
+                if (pServ.checkPersonExistence(persona))
                 {
                     Session["userExists" + Session.SessionID] = "true";
                     persona = pServ.getPersonaByMailAndDNI(persona.user.mail, persona.dni);
@@ -304,7 +303,7 @@ namespace ProgIII_EasyFitness_RoccaFederico.Controllers
                     "e><![endif]--></td></tr></tbody></table></div><!--[if mso | IE]>      </td></tr></table>      <![endif]--></td></tr></tbody></tab" +
                     "le></div><!--[if mso | IE]>      </td></tr></table>      <![endif]--></div></body></html>");
 
-                    
+
                     return RedirectToAction("RecoverPasswordOK");
                 }
                 else
@@ -313,7 +312,7 @@ namespace ProgIII_EasyFitness_RoccaFederico.Controllers
                     return RedirectToAction("RecoverPassword");
                 }
             }
-            catch(Exception)
+            catch (Exception)
             {
                 return View();
             }
@@ -322,6 +321,32 @@ namespace ProgIII_EasyFitness_RoccaFederico.Controllers
         public ActionResult RecoverPasswordOK()
         {
             return View();
+        }
+
+        public ActionResult reLogin()
+        {
+            try
+            {
+                personaModel persona = new personaModel();
+                persona = (personaModel)Session["personaLogedIn" + Session.SessionID];
+                switch (persona.user.profile)
+                {
+                    case "Alumno":
+                        return RedirectToAction("Index", "Alumno");
+
+                    case "Entrenador":
+                        return RedirectToAction("Index", "Entrenador");
+
+                    default:
+                        break;
+                }
+
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
         }
 
     }

@@ -1,0 +1,121 @@
+﻿@model ProgIII_EasyFitness_RoccaFederico.Models.EjercicioModel
+
+@{
+    ViewBag.Title = "Nuevo";
+    Layout = "~/Views/Shared/_LayoutEntrenador.cshtml";
+}
+
+<h2>Nuevo</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>EjercicioModel</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.nombre, "Nombre", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.nombre, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.nombre, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.tipo, "Tipo", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.tipo, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.tipo, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.urlEjemplo, "Video de ejemplo", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.urlEjemplo, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.urlEjemplo, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.tiempo, "Tiempo (Segundos)", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6" style="display:flex">
+                @Html.EditorFor(model => model.tiempo, new { htmlAttributes = new { @class="form-control", onchange="calcMinutes()", onkeyup="calcMinutes()", id="secondsInput" } })
+                @Html.ValidationMessageFor(model => model.tiempo, "", new { @class = "text-danger" })
+                <span style="margin-left:5px" id="minutesSpan" class="col-md-5"></span>
+            </div>
+        </div>
+        <script>
+            function calcMinutes() {
+                
+                if (document.getElementById("secondsInput").value >= 60) {
+                    if (document.getElementById("secondsInput").value / 60 >= 2) {
+                        document.getElementById("minutesSpan").innerText = "(" + fmtMSS(document.getElementById("secondsInput").value) + " minutos)";
+                    }
+                    else {
+                        document.getElementById("minutesSpan").innerText = "(" + fmtMSS(document.getElementById("secondsInput").value) + " minuto)";
+                    }
+
+                    var minutes = Math.floor(time / 60);
+                }
+                else {
+                    document.getElementById("minutesSpan").innerText = "";
+                }
+            }
+
+            function fmtMSS(s){return(s-(s%=60))/60+(9<s?':':':0')+s}
+
+        </script>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.repeticiones, "Repeticiones", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.repeticiones, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.repeticiones, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        @*<div class="form-group">
+                @Html.LabelFor(model => model.intensidad, "Intensidad", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.intensidad, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.intensidad, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <div class="form-group">
+            @Html.LabelFor(model => model.intensidad, "Intensidad", htmlAttributes: new { @class = "control-label col-md-2", style = "display:inline;" })
+            <div class="col-md-10">
+                <div id="slider">
+                </div>
+                @Html.EditorFor(model => model.intensidad, new { htmlAttributes = new { @class = "form-control", id = "sliderInputField", @Value = "6", style = "display:none" } })
+                @Html.ValidationMessageFor(model => model.intensidad, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <script>
+            $(function () {
+                $("#slider").slider({
+                    range: "min",
+                    value: 6,
+                    min: 1,
+                    max: 11,
+                    slide: function (event, ui) {
+                        $("#slider").val("$" + ui.value);
+                        $("#sliderInputField").val(ui.value);
+                    }
+                });
+                $("#slider").val($("#slider").slider("value"));
+            });
+        </script>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Confirmar" class="btn btn-success" />
+            </div>
+        </div>
+    </div>
+}
