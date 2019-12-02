@@ -13,6 +13,7 @@ namespace ProgIII_EasyFitness_RoccaFederico.Models
         public string urlEjemplo { get; set; }
         public int tiempo { get; set; }
         public int repeticiones { get; set; }
+        public string comentarios { get; set; }
         public Int16 intensidad { get; set; }
     }
 }

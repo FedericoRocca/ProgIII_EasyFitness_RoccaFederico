@@ -129,6 +129,7 @@
     <Compile Include="Controllers\EntrenadorController.cs" />
     <Compile Include="Controllers\EntrenamientoController.cs" />
     <Compile Include="Controllers\loginController.cs" />
+    <Compile Include="Controllers\RutinaController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -138,6 +139,8 @@
     <Compile Include="Models\RutinaModel.cs" />
     <Compile Include="Models\usuarioModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service\EjercicioService.cs" />
+    <Compile Include="Service\EntrenamientoService.cs" />
     <Compile Include="Service\personaService.cs" />
     <Compile Include="Service\userService.cs" />
   </ItemGroup>
@@ -244,6 +247,10 @@
     <Content Include="Views\Ejercicio\Nuevo.cshtml" />
     <Content Include="Views\Entrenamiento\Index.cshtml" />
     <Content Include="Views\Entrenamiento\Nuevo.cshtml" />
+    <Content Include="Views\Entrenamiento\NuevoEntrenamiento.cshtml" />
+    <Content Include="Views\Entrenamiento\ErrorEntrenamiento.cshtml" />
+    <Content Include="Views\Rutina\Index.cshtml" />
+    <Content Include="Views\Rutina\Nueva.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

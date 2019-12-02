@@ -40,9 +40,17 @@ namespace ProgIII_EasyFitness_RoccaFederico.Controllers
                 entrenamiento.nombre = Request.Form["nombre"];
                 entrenamiento.idPersona = ((personaModel)Session["personaLogedIn" + Session.SessionID]).id;
 
-                
+                EntrenamientoService eServ = new EntrenamientoService();
+                if (eServ.newEntrenamiento(entrenamiento) == true)
+                {
+                    return RedirectToAction("NuevoEntrenamiento");
+                }
+                else
+                {
+                    return RedirectToAction("ErrorEntrenamiento");
+                }
 
-                return RedirectToAction("Index");
+
             }
             catch
             {
@@ -92,6 +100,16 @@ namespace ProgIII_EasyFitness_RoccaFederico.Controllers
             {
                 return View();
             }
+        }
+
+        public ActionResult NuevoEntrenamiento()
+        {
+            return View();
+        }
+
+        public ActionResult ErrorEntrenamiento()
+        {
+            return View();
         }
     }
 }

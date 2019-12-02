@@ -1,0 +1,38 @@
+﻿@model ProgIII_EasyFitness_RoccaFederico.Models.RutinaModel
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutEntrenador.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>EjercicioModel</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-row">
+            <div class="col-md2">
+                @Html.ActionLink("Nuevo", "Nueva", "Rutina", null, new { @class = "btn btn-dark" })
+            </div>
+        </div>
+
+        <div class="form-row" style="margin-top: 10px">
+            <div class="col-md2">
+                <input type="submit" value="Buscar" class="btn btn-dark" />
+            </div>
+            <div class="col-md-offset-2 col-md-10">
+                @Html.EditorFor(model => model.nombre, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.nombre, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-row" style="margin-top: 10px">
+            <div class="col-md2">
+                @Html.ActionLink("Todos", "Todas", "Rutina", null, new { @class = "btn btn-dark" })
+            </div>
+        </div>
+    </div>
+}

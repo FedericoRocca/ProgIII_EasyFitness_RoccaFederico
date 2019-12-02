@@ -35,13 +35,27 @@ namespace ProgIII_EasyFitness_RoccaFederico.Controllers
         {
             try
             {
+
+                if((Request.Form["tiempo"] == "" && Request.Form["repeticiones"] == "") || 
+                   (int.Parse(Request.Form["tiempo"]) <= 0 && int.Parse(Request.Form["repeticiones"]) <= 0))
+                {
+
+                }
+
                 EjercicioModel ejercicio = new EjercicioModel();
                 ejercicio.nombre = Request.Form["nombre"].ToString();
                 ejercicio.tipo = Request.Form["tipo"].ToString();
                 ejercicio.urlEjemplo = Request.Form["urlEjemplo"].ToString();
-                //ejercicio.tiempo = DateTime.Now.Date.AddSeconds(int.Parse(Request.Form["tiempo"]));
-                ejercicio.tiempo = int.Parse(Request.Form["tiempo"]);
-                ejercicio.repeticiones = int.Parse(Request.Form["repeticiones"]);
+                var asd = Request.Form["tiempo"];
+                if (Request.Form["tiempo"] != "")
+                {
+                    ejercicio.tiempo = int.Parse(Request.Form["tiempo"]);
+                }
+
+                if(Request.Form["repeticiones"] != "")
+                {
+                    ejercicio.repeticiones = int.Parse(Request.Form["repeticiones"]);
+                }
                 ejercicio.intensidad = Int16.Parse(Request.Form["intensidad"]);
                 
 

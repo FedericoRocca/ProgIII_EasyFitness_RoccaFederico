@@ -1,0 +1,10 @@
+﻿
+@{
+    ViewBag.Title = "ErrorEntrenamiento";
+    Layout = "~/Views/Shared/_LayoutEntrenador.cshtml";
+}
+
+<p>
+    Hubo problemas al crear el entrenamiento
+</p>
+@Html.ActionLink("Volver", "reLogin", "login", null, new { @class = "btn btn-dark" })
