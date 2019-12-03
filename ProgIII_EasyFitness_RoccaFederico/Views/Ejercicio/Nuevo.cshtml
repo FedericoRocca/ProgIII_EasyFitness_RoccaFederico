@@ -1,4 +1,5 @@
 ﻿@model ProgIII_EasyFitness_RoccaFederico.Models.EjercicioModel
+@using ProgIII_EasyFitness_RoccaFederico.Models;
 
 @{
     ViewBag.Title = "Nuevo";
@@ -42,14 +43,14 @@
         <div class="form-group">
             @Html.LabelFor(model => model.tiempo, "Tiempo (Segundos)", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-6" style="display:flex">
-                @Html.EditorFor(model => model.tiempo, new { htmlAttributes = new { @class="form-control", onchange="calcMinutes()", onkeyup="calcMinutes()", id="secondsInput" } })
+                @Html.EditorFor(model => model.tiempo, new { htmlAttributes = new { @class = "form-control", onchange = "calcMinutes()", onkeyup = "calcMinutes()", id = "secondsInput" } })
                 @Html.ValidationMessageFor(model => model.tiempo, "", new { @class = "text-danger" })
                 <span style="margin-left:5px" id="minutesSpan" class="col-md-5"></span>
             </div>
         </div>
         <script>
             function calcMinutes() {
-                
+
                 if (document.getElementById("secondsInput").value >= 60) {
                     if (document.getElementById("secondsInput").value / 60 >= 2) {
                         document.getElementById("minutesSpan").innerText = "(" + fmtMSS(document.getElementById("secondsInput").value) + " minutos)";
@@ -65,7 +66,7 @@
                 }
             }
 
-            function fmtMSS(s){return(s-(s%=60))/60+(9<s?':':':0')+s}
+            function fmtMSS(s) { return (s - (s %= 60)) / 60 + (9 < s ? ':' : ':0') + s }
 
         </script>
 
@@ -111,6 +112,29 @@
                 $("#slider").val($("#slider").slider("value"));
             });
         </script>
+
+        @{
+            List<RutinaModel> rutinas = new List<RutinaModel>();
+            rutinas = (List<RutinaModel>)Session["rutinas" + Session.SessionID];
+
+            SelectList rutinasList = new SelectList(rutinas, "id", "nombre");
+            <div class="form-group">
+                @{
+                    if (rutinas.Count <= 0)
+                    {
+                        @Html.LabelFor(model => model.idRutina, "Aún no creaste rutinas", htmlAttributes: new { @class = "control-label col-md-2" })
+                    }
+                    else
+                    {
+                        @Html.LabelFor(model => model.idRutina, "Es parte de la rutina", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownListFor(m => m.idRutina, rutinasList, new { @class = "form-control", required = "required" })
+                            @Html.ValidationMessageFor(model => model.idRutina, "", new { @class = "text-danger" })
+                        </div>
+                    }
+                }
+            </div>
+        }
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">

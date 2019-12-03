@@ -37,13 +37,14 @@ namespace ProgIII_EasyFitness_RoccaFederico.Service
                 DDBBGateway data = new DDBBGateway();
                 data.prepareQuery("select * from Entrenamientos where idPersona = '" +persona.id + "'");
                 data.sendQuery();
-                EntrenamientoModel aux = new EntrenamientoModel();
                 List<EntrenamientoModel> auxList = new List<EntrenamientoModel>();
                 while( data.getReader().Read() )
                 {
+                    EntrenamientoModel aux = new EntrenamientoModel();
                     aux.descripcion = data.getReader()["descripcion"].ToString();
                     aux.nombre = data.getReader()["nombre"].ToString();
                     aux.idPersona = long.Parse(data.getReader()["idPersona"].ToString());
+                    aux.id = long.Parse(data.getReader()["id"].ToString());
                     auxList.Add(aux);
                 }
                 return auxList;

@@ -20,6 +20,12 @@ namespace ProgIII_EasyFitness_RoccaFederico.Controllers
         // GET: login/Create
         public ActionResult Index()
         {
+            personaModel isPersonaLoged = (personaModel)Session["personaLogedIn" + Session.SessionID];
+            if ( isPersonaLoged != null)
+            {
+                return RedirectToAction("reLogin");
+            }
+
             return View();
         }
 

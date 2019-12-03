@@ -25,15 +25,11 @@ namespace ProgIII_EasyFitness_RoccaFederico.Controllers
         // GET: Rutina/Create
         public ActionResult Nueva()
         {
-
             personaModel personaLoged = (personaModel)Session["personaLogedIn" + Session.SessionID];
             List<EntrenamientoModel> entrenamientosPersona = new List<EntrenamientoModel>();
             EntrenamientoService eServ = new EntrenamientoService();
-
             entrenamientosPersona = eServ.getEntrenamientosByPersonaID(personaLoged);
-
             Session["entrenamientos" + Session.SessionID] = entrenamientosPersona;
-
             return View();
         }
 
@@ -43,9 +39,23 @@ namespace ProgIII_EasyFitness_RoccaFederico.Controllers
         {
             try
             {
-                // TODO: Add insert logic here
+                personaModel personaLoged = (personaModel)Session["personaLogedIn" + Session.SessionID];
+                RutinaModel rutina = new RutinaModel();
+                rutina.idPersona = personaLoged.id;
+                rutina.idEntrenamiento = long.Parse(Request.Form["idEntrenamiento"]);
+                rutina.descripcion = Request.Form["descripcion"].ToString();
+                rutina.nombre = Request.Form["nombre"].ToString();
+                RutinaService rServ = new RutinaService();
+                if(rServ.newRutina(rutina) == false)
+                {
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    return RedirectToAction("NuevaRutina");
+                }
 
-                return RedirectToAction("Index");
+                
             }
             catch
             {
@@ -95,6 +105,11 @@ namespace ProgIII_EasyFitness_RoccaFederico.Controllers
             {
                 return View();
             }
+        }
+
+        public ActionResult NuevaRutina()
+        {
+            return View();
         }
     }
 }

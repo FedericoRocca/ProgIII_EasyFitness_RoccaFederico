@@ -21,7 +21,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.descripcion, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.descripcion, new { htmlAttributes = new { @class = "form-control", required = "required"} })
+            @Html.EditorFor(model => model.descripcion, new { htmlAttributes = new { @class = "form-control", required = "required" } })
             @Html.ValidationMessageFor(model => model.descripcion, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -38,7 +38,7 @@
         List<EntrenamientoModel> entrenamientos = new List<EntrenamientoModel>();
         entrenamientos = (List<EntrenamientoModel>)Session["entrenamientos" + Session.SessionID];
 
-            SelectList entrenamientosList = new SelectList(entrenamientos, "id", "nombre");
+        SelectList entrenamientosList = new SelectList(entrenamientos, "id", "nombre");
         <div class="form-group">
             @{
                 if (entrenamientos.Count <= 0)
@@ -48,14 +48,13 @@
                 else
                 {
                     @Html.LabelFor(model => model.idEntrenamiento, "Es parte del entrenamiento", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownListFor(m => m.idEntrenamiento, entrenamientosList, new { @class = "form-control", required = "required" })
+                        @Html.ValidationMessageFor(model => model.idEntrenamiento, "", new { @class = "text-danger" })
+                    </div>
                 }
             }
-            <div class="col-md-10">
-                @Html.DropDownListFor(m => m.idEntrenamiento, entrenamientosList, new { @class = "form-control", required = "required" })
-                @Html.ValidationMessageFor(model => model.idEntrenamiento, "", new { @class = "text-danger" })
-            </div>
         </div>
-
     }
 
 

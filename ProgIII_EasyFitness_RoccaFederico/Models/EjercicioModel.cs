@@ -8,6 +8,8 @@ namespace ProgIII_EasyFitness_RoccaFederico.Models
     public class EjercicioModel
     {
         public long id { get; set; }
+        public long idPersona { get; set; }
+        public long idRutina { get; set; }
         public string nombre { get; set; }
         public string tipo { get; set; }
         public string urlEjemplo { get; set; }

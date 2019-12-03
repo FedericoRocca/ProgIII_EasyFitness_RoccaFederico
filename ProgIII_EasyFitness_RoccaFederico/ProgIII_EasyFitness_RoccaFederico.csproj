@@ -142,6 +142,7 @@
     <Compile Include="Service\EjercicioService.cs" />
     <Compile Include="Service\EntrenamientoService.cs" />
     <Compile Include="Service\personaService.cs" />
+    <Compile Include="Service\RutinaService.cs" />
     <Compile Include="Service\userService.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -251,6 +252,7 @@
     <Content Include="Views\Entrenamiento\ErrorEntrenamiento.cshtml" />
     <Content Include="Views\Rutina\Index.cshtml" />
     <Content Include="Views\Rutina\Nueva.cshtml" />
+    <Content Include="Views\Rutina\NuevaRutina.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

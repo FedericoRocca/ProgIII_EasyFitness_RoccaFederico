@@ -26,6 +26,16 @@ namespace ProgIII_EasyFitness_RoccaFederico.Controllers
         // GET: Ejercicio/Create
         public ActionResult Nuevo()
         {
+            personaModel personaLoged = (personaModel)Session["personaLogedIn" + Session.SessionID];
+            List<EjercicioModel> ejerciciosPersona = new List<EjercicioModel>();
+            EjercicioService ejServ = new EjercicioService();
+            ejerciciosPersona = ejServ.getEjerciciosByPersonaID(personaLoged);
+            Session["ejercicios" + Session.SessionID] = ejerciciosPersona;
+
+            RutinaService rServ = new RutinaService();
+            List<RutinaModel> listRutinas = new List<RutinaModel>();
+            listRutinas = rServ.getRutinasByPersonaID(personaLoged);
+            Session["rutinas" + Session.SessionID] = listRutinas;
             return View();
         }
 
