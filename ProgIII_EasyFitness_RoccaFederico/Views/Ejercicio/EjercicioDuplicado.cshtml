@@ -1,0 +1,11 @@
+﻿
+@{
+    ViewBag.Title = "EjercicioDuplicado";
+    Layout = "~/Views/Shared/_LayoutEntrenador.cshtml";
+}
+
+<p>
+    El ejercicio ya existe. Intente crear uno nuevo.
+</p>
+@Html.ActionLink("Volver", "reLogin", "login", null, new { @class = "btn btn-dark" })
+

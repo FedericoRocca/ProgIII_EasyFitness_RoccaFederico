@@ -38,10 +38,12 @@
                 <li class="nav-item">
                     @Html.ActionLink("Mis datos", "Datos", "Entrenador", null, new { @class = "nav-link" })
                 </li>
+                <li class="nav-item">
+                    @Html.ActionLink("Cerrar sesión", "Logout", "login", null, new { @class = "nav-link navbar-right" })
+                </li>
             </ul>
         </div>
     </nav>
-
     @* Para evitar el back button del browser *@
     <script type="text/javascript">
         function DisableBackButton() {

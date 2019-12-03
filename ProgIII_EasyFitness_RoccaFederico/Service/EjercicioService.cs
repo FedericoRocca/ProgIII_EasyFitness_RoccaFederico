@@ -14,12 +14,15 @@ namespace ProgIII_EasyFitness_RoccaFederico.Service
             try
             {
                 DDBBGateway data = new DDBBGateway();
-                //data.prepareQuery(
-                //    "insert into Ejercicios " +
-                //    "values ('" + _ejercicio.nombre + "', '" + _ejercicio.tipo + "', '" + _ejercicio.urlEjemplo + 
-                //    "', '" + _ejercicio.tiempo + "', '" + _ejercicio.repeticiones + "', '" + _ejercicio.comentarios + "', '" + _ejercicio.intensidad +
-                //    "', '" + _ejercicio. + "', 'idRutina')");
-                data.sendStatement();
+                data.prepareQuery(
+                    "insert into Ejercicios " +
+                    "values ('" + _ejercicio.nombre + "', '" + _ejercicio.tipo + "', '" + _ejercicio.urlEjemplo + "', '" + _ejercicio.tiempo +
+                    "', '" + _ejercicio.repeticiones + "', '" + _ejercicio.comentarios + "', '" + _ejercicio.intensidad + 
+                    "', '" + _ejercicio.idPersona + "', '" + _ejercicio.idRutina + "')");
+                if(data.sendStatement() == false)
+                {
+                    return false;
+                }
                 if (data.getAffectedRows() <= 0)
                 {
                     return false;

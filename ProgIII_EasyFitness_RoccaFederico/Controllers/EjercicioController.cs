@@ -46,7 +46,7 @@ namespace ProgIII_EasyFitness_RoccaFederico.Controllers
             try
             {
 
-                if((Request.Form["tiempo"] == "" && Request.Form["repeticiones"] == "") || 
+                if ((Request.Form["tiempo"] == "" && Request.Form["repeticiones"] == "") ||
                    (int.Parse(Request.Form["tiempo"]) <= 0 && int.Parse(Request.Form["repeticiones"]) <= 0))
                 {
 
@@ -62,15 +62,23 @@ namespace ProgIII_EasyFitness_RoccaFederico.Controllers
                     ejercicio.tiempo = int.Parse(Request.Form["tiempo"]);
                 }
 
-                if(Request.Form["repeticiones"] != "")
+                if (Request.Form["repeticiones"] != "")
                 {
                     ejercicio.repeticiones = int.Parse(Request.Form["repeticiones"]);
                 }
                 ejercicio.intensidad = Int16.Parse(Request.Form["intensidad"]);
-                
+                ejercicio.comentarios = Request.Form["comentarios"].ToString();
+                personaModel personaLoged = (personaModel)Session["personaLogedIn" + Session.SessionID];
+                ejercicio.idPersona = personaLoged.id;
+                ejercicio.idRutina = long.Parse(Request.Form["idRutina"]);
 
+                EjercicioService eServ = new EjercicioService();
+                if (eServ.newEjercicio(ejercicio) == false)
+                {
+                    return RedirectToAction("EjercicioDuplicado");
+                }
+                else return RedirectToAction("NuevoEjercicio");
 
-                return RedirectToAction("Index");
             }
             catch
             {
@@ -120,6 +128,15 @@ namespace ProgIII_EasyFitness_RoccaFederico.Controllers
             {
                 return View();
             }
+        }
+        public ActionResult NuevoEjercicio()
+        {
+            return View();
+        }
+
+        public ActionResult EjercicioDuplicado()
+        {
+            return View();
         }
     }
 }

@@ -253,6 +253,11 @@
     <Content Include="Views\Rutina\Index.cshtml" />
     <Content Include="Views\Rutina\Nueva.cshtml" />
     <Content Include="Views\Rutina\NuevaRutina.cshtml" />
+    <Content Include="Views\Ejercicio\NuevoEjercicio.cshtml" />
+    <Content Include="Views\Ejercicio\EjercicioDuplicado.cshtml" />
+    <Content Include="Views\Entrenamiento\ListaEntrenamientos.cshtml" />
+    <Content Include="Views\Entrenamiento\Edit.cshtml" />
+    <Content Include="Views\Entrenamiento\EntrenamientoModificado.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -121,16 +121,24 @@ namespace DataGateway
         /// <summary>
         /// Envía la sentencia a la DDBB. Posterior a prepareStatement().
         /// </summary>
-        public void sendStatement()
+        public bool sendStatement()
         {
             try
             {
                 connection.Open();
                 affectedRows = command.ExecuteNonQuery();
+                return true;
+            }
+            catch (SqlException ex)
+            {
+                if (ex.Number == 2601 || ex.Number == 2627)
+                {
+                    return false;
+                }
+                throw ex;
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
         }

@@ -61,18 +61,28 @@ namespace ProgIII_EasyFitness_RoccaFederico.Controllers
         // GET: Entrenamiento/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+
+            EntrenamientoModel entrenamiento = new EntrenamientoModel();
+            EntrenamientoService eServ = new EntrenamientoService();
+            personaModel persona = (personaModel)Session["personaLogedIn" + Session.SessionID];
+            entrenamiento = eServ.getEntrenamientoByPersonaID(persona);
+
+            return View(entrenamiento);
         }
 
         // POST: Entrenamiento/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(EntrenamientoModel _entrenamiento)
         {
             try
             {
-                // TODO: Add update logic here
-
+                EntrenamientoService eServ = new EntrenamientoService();
+                if(eServ.updateEntrenamiento(_entrenamiento) == true)
+                {
+                    return RedirectToAction("EntrenamientoModificado");
+                }
                 return RedirectToAction("Index");
+
             }
             catch
             {
@@ -111,5 +121,21 @@ namespace ProgIII_EasyFitness_RoccaFederico.Controllers
         {
             return View();
         }
+
+        public ActionResult ListaEntrenamientos()
+        {
+
+            personaModel persona = (personaModel)Session["personaLogedIn" + Session.SessionID];
+            List<EntrenamientoModel> listaEntrenamientos = new List<EntrenamientoModel>();
+            EntrenamientoService eServ = new EntrenamientoService();
+            listaEntrenamientos = eServ.getEntrenamientosByPersonaID(persona);
+
+            return View(listaEntrenamientos);
+        }
+        public ActionResult EntrenamientoModificado()
+        {
+            return View();
+        }
+        
     }
 }

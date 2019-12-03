@@ -1,0 +1,37 @@
+﻿@model IEnumerable<ProgIII_EasyFitness_RoccaFederico.Models.EntrenamientoModel>
+
+@{
+    ViewBag.Title = "ListaEntrenamientos";
+    Layout = "~/Views/Shared/_LayoutEntrenador.cshtml";
+}
+
+<h5></h5>
+<h5>Listado de entrenamientos</h5>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.descripcion)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.descripcion)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.id })
+            </td>
+        </tr>
+    }
+
+</table>

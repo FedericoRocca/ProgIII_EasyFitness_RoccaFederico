@@ -355,5 +355,11 @@ namespace ProgIII_EasyFitness_RoccaFederico.Controllers
             }
         }
 
+        public ActionResult Logout()
+        {
+            Session["personaLogedIn" + Session.SessionID] = null;
+            return RedirectToAction("Index");
+        }
+
     }
 }
