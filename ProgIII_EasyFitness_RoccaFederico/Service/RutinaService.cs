@@ -55,5 +55,31 @@ namespace ProgIII_EasyFitness_RoccaFederico.Service
                 throw ex;
             }
         }
+
+        public List<long> getRutinasByEntrenamientoId(EntrenamientoModel entrenamiento)
+        {
+            try
+            {
+                DDBBGateway data = new DDBBGateway();
+                data.prepareQuery(
+                    "select distinct Rutinas.id " +
+                    "from Entrenamientos " +
+                    "inner join Rutinas on Entrenamientos.id = Rutinas.idEntrenamiento " +
+                    "where Entrenamientos.id = '" + entrenamiento.id + "'");
+                data.sendQuery();
+                List<long> listRutinas = new List<long>();
+                while (data.getReader().Read())
+                {
+                    long aux;
+                    aux = long.Parse(data.getReader()["id"].ToString());
+                    listRutinas.Add(aux);
+                }
+                return listRutinas;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

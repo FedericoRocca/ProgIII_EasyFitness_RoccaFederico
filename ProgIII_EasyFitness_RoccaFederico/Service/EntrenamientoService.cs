@@ -52,6 +52,26 @@ namespace ProgIII_EasyFitness_RoccaFederico.Service
             }
         }
 
+        public bool deleteEntrenamiento(EntrenamientoModel _entrenamiento)
+        {
+            try
+            {
+
+                //Primero, obtengo la lista de rutinas a eliminar a partir del id de entrenamiento
+                List<long> listaRutinas = new List<long>();
+                RutinaService rServ = new RutinaService();
+                listaRutinas = rServ.getRutinasByEntrenamientoId(_entrenamiento);
+
+                //Ahora, obtengo la lista de ejercicios a elimiar a partir de los id de rutinas
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public List<EntrenamientoModel> getEntrenamientosByPersonaID(personaModel persona)
         {
             try
@@ -83,6 +103,27 @@ namespace ProgIII_EasyFitness_RoccaFederico.Service
             {
                 DDBBGateway data = new DDBBGateway();
                 data.prepareQuery("select * from Entrenamientos where idPersona = '" + persona.id + "'");
+                data.sendQuery();
+                data.getReader().Read();
+                EntrenamientoModel aux = new EntrenamientoModel();
+                aux.descripcion = data.getReader()["descripcion"].ToString();
+                aux.nombre = data.getReader()["nombre"].ToString();
+                aux.idPersona = long.Parse(data.getReader()["idPersona"].ToString());
+                aux.id = long.Parse(data.getReader()["id"].ToString());
+                return aux;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public EntrenamientoModel getEntrenamientoByID(long idEntrenamiento)
+        {
+            try
+            {
+                DDBBGateway data = new DDBBGateway();
+                data.prepareQuery("select * from Entrenamientos where id = '" + idEntrenamiento + "'");
                 data.sendQuery();
                 data.getReader().Read();
                 EntrenamientoModel aux = new EntrenamientoModel();

@@ -256,8 +256,9 @@
     <Content Include="Views\Ejercicio\NuevoEjercicio.cshtml" />
     <Content Include="Views\Ejercicio\EjercicioDuplicado.cshtml" />
     <Content Include="Views\Entrenamiento\ListaEntrenamientos.cshtml" />
-    <Content Include="Views\Entrenamiento\Edit.cshtml" />
+    <Content Include="Views\Entrenamiento\Editar.cshtml" />
     <Content Include="Views\Entrenamiento\EntrenamientoModificado.cshtml" />
+    <Content Include="Views\Entrenamiento\Eliminar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

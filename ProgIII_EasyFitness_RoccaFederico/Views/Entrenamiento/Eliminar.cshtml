@@ -1,0 +1,38 @@
+﻿@model ProgIII_EasyFitness_RoccaFederico.Models.EntrenamientoModel
+
+@{
+    ViewBag.Title = "Eliminar";
+    Layout = "~/Views/Shared/_LayoutEntrenador.cshtml";
+}
+
+<h4></h4>
+<h5>Realmente querés eliminar el entrenamiento?</h5>
+<h6>Se van a eliminar las rutinas y ejercicios asociados a este entrenamiento</h6>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nombre)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.descripcion)
+        </dd>
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Eliminar" class="btn btn-danger" />
+        </div>
+    }
+</div>

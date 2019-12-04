@@ -59,7 +59,7 @@ namespace ProgIII_EasyFitness_RoccaFederico.Controllers
         }
 
         // GET: Entrenamiento/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Editar()
         {
 
             EntrenamientoModel entrenamiento = new EntrenamientoModel();
@@ -72,7 +72,7 @@ namespace ProgIII_EasyFitness_RoccaFederico.Controllers
 
         // POST: Entrenamiento/Edit/5
         [HttpPost]
-        public ActionResult Edit(EntrenamientoModel _entrenamiento)
+        public ActionResult Editar(EntrenamientoModel _entrenamiento)
         {
             try
             {
@@ -91,18 +91,36 @@ namespace ProgIII_EasyFitness_RoccaFederico.Controllers
         }
 
         // GET: Entrenamiento/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Eliminar()
         {
-            return View();
+            EntrenamientoModel entrenamiento = new EntrenamientoModel();
+            EntrenamientoService eServ = new EntrenamientoService();
+            personaModel persona = (personaModel)Session["personaLogedIn" + Session.SessionID];
+            entrenamiento = eServ.getEntrenamientoByPersonaID(persona);
+
+            return View(entrenamiento);
         }
 
         // POST: Entrenamiento/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Eliminar(int id)
         {
             try
             {
-                // TODO: Add delete logic here
+                EntrenamientoModel entrenamiento = new EntrenamientoModel();
+                EntrenamientoService eServ = new EntrenamientoService();
+                entrenamiento = eServ.getEntrenamientoByID(id);
+
+                //Seguir laburando con public bool deleteEntrenamiento(EntrenamientoModel _entrenamiento)
+
+                // Obtengo las rutinas a partir del id de entrenamiento
+                // select distinct Rutinas.id from Entrenamientos inner join Rutinas on Entrenamientos.id = Rutinas.idEntrenamiento where Entrenamientos.id = '3'
+                // 
+                // Obtengo los ejercicios a partir del id de entrenamiento
+                // select distinct Ejercicios.id from Entrenamientos
+                // inner join Rutinas on Entrenamientos.id = Rutinas.idEntrenamiento
+                // inner join Ejercicios on Rutinas.id = Ejercicios.idRutina
+                // where Entrenamientos.id = '3'
 
                 return RedirectToAction("Index");
             }
