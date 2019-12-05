@@ -74,7 +74,28 @@ namespace ProgIII_EasyFitness_RoccaFederico.Service
                     aux = long.Parse(data.getReader()["id"].ToString());
                     listRutinas.Add(aux);
                 }
+                listRutinas = listRutinas.Distinct().ToList();
                 return listRutinas;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public void deleteRutinasByIds(List<long> idsRutinas)
+        {
+            try
+            {
+                for (int i = 0; i < idsRutinas.Count; i++)
+                {
+                    DDBBGateway data = new DDBBGateway();
+                    data.prepareStatement(
+                        "delete from Rutinas" +
+                        " where Rutinas.id = '" + idsRutinas[i] + "'");
+                    data.sendStatement();
+                    data.closeConnection();
+                }
             }
             catch (Exception ex)
             {

@@ -111,16 +111,8 @@ namespace ProgIII_EasyFitness_RoccaFederico.Controllers
                 EntrenamientoService eServ = new EntrenamientoService();
                 entrenamiento = eServ.getEntrenamientoByID(id);
 
-                //Seguir laburando con public bool deleteEntrenamiento(EntrenamientoModel _entrenamiento)
-
-                // Obtengo las rutinas a partir del id de entrenamiento
-                // select distinct Rutinas.id from Entrenamientos inner join Rutinas on Entrenamientos.id = Rutinas.idEntrenamiento where Entrenamientos.id = '3'
-                // 
-                // Obtengo los ejercicios a partir del id de entrenamiento
-                // select distinct Ejercicios.id from Entrenamientos
-                // inner join Rutinas on Entrenamientos.id = Rutinas.idEntrenamiento
-                // inner join Ejercicios on Rutinas.id = Ejercicios.idRutina
-                // where Entrenamientos.id = '3'
+                // acá va la llamada a:
+                eServ.deleteEntrenamiento(entrenamiento);
 
                 return RedirectToAction("Index");
             }

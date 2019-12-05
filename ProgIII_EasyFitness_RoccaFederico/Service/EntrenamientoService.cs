@@ -56,13 +56,32 @@ namespace ProgIII_EasyFitness_RoccaFederico.Service
         {
             try
             {
-
                 //Primero, obtengo la lista de rutinas a eliminar a partir del id de entrenamiento
                 List<long> listaRutinas = new List<long>();
                 RutinaService rServ = new RutinaService();
                 listaRutinas = rServ.getRutinasByEntrenamientoId(_entrenamiento);
 
-                //Ahora, obtengo la lista de ejercicios a elimiar a partir de los id de rutinas
+                //Ahora, obtengo la lista de ejercicios a eliminar a partir de los id de rutinas
+                List<long> listaEjercicios = new List<long>();
+                EjercicioService eServ = new EjercicioService();
+                listaEjercicios = eServ.getIdEjerciciosByRutinaID(listaRutinas);
+
+                if (listaEjercicios.Count > 0)
+                {
+                    eServ.deleteEjerciciosByIds(listaEjercicios);
+                }
+
+                if (listaRutinas.Count > 0)
+                {
+                    rServ.deleteRutinasByIds(listaRutinas);
+                }
+
+                DDBBGateway data = new DDBBGateway();
+                data.prepareStatement(
+                    "delete from Entrenamientos" +
+                    " where Entrenamientos.id = '" + _entrenamiento.id + "'");
+                data.sendStatement();
+
 
                 return true;
             }
@@ -77,10 +96,10 @@ namespace ProgIII_EasyFitness_RoccaFederico.Service
             try
             {
                 DDBBGateway data = new DDBBGateway();
-                data.prepareQuery("select * from Entrenamientos where idPersona = '" +persona.id + "'");
+                data.prepareQuery("select * from Entrenamientos where idPersona = '" + persona.id + "'");
                 data.sendQuery();
                 List<EntrenamientoModel> auxList = new List<EntrenamientoModel>();
-                while( data.getReader().Read() )
+                while (data.getReader().Read())
                 {
                     EntrenamientoModel aux = new EntrenamientoModel();
                     aux.descripcion = data.getReader()["descripcion"].ToString();
